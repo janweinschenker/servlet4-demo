@@ -4,20 +4,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.holisticon</groupId>
-    <artifactId>servlet4-demo-spring-boot</artifactId>
+    <artifactId>servlet4-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>servlet4-demo-spring-boot</name>
+    <name>servlet4-demo</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
-        <groupId>de.holisticon</groupId>
-        <artifactId>servlet4-demo</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.M3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+      <module>servlet4-demo-spring-boot</module>
+    </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
