@@ -3,7 +3,6 @@ package de.holisticon.servlet4demospringboot;
 import de.holisticon.servlet4demospringboot.dto.Greeting;
 import org.eclipse.jetty.server.PushBuilder;
 import org.eclipse.jetty.server.Request;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +18,10 @@ public class GreetingController {
   private final AtomicLong counter = new AtomicLong();
 
   /**
-   *
-   * @see org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver
    * @param request
    * @param name
    * @return
+   * @see org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver
    */
   @RequestMapping("/greeting")
   public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
