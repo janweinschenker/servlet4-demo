@@ -24,7 +24,8 @@ public class GreetingController {
    * @see org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver
    */
   @RequestMapping("/greeting")
-  public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
+  public Greeting greeting(
+      ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
     PushBuilder pushBuilder = Request
         .getBaseRequest(request)
         .getPushBuilder();

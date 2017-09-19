@@ -20,6 +20,7 @@
     <modules>
         <module>spring-boot</module>
         <module>spring-boot-client</module>
+        <module>glassfish</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +35,7 @@
         <alpn-boot.version>8.1.5.v20150921</alpn-boot.version>
         <okhttp.version>3.6.0</okhttp.version>
         <okio.version>1.11.0</okio.version>
+        <javax.servlet-api.version>4.0.0-b05</javax.servlet-api.version>
     </properties>
 
     <dependencyManagement>
@@ -141,17 +143,19 @@
                 <artifactId>okio</artifactId>
                 <version>${okio.version}</version>
             </dependency>
-
             <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-
     <build>
         <pluginManagement>
             <plugins>

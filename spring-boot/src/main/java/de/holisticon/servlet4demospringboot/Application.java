@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
 
@@ -26,6 +27,8 @@ public class Application {
     return factory;
   }
 
+
+  
   private Server configureServerForHttp2(Server server) {
     // HTTP Configuration
     HttpConfiguration http11Config = new HttpConfiguration();
