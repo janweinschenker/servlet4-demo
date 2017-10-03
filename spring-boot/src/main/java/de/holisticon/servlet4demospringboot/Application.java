@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
 
@@ -28,7 +27,6 @@ public class Application {
   }
 
 
-  
   private Server configureServerForHttp2(Server server) {
     // HTTP Configuration
     HttpConfiguration http11Config = new HttpConfiguration();
@@ -41,6 +39,7 @@ public class Application {
     sslContextFactory.setKeyStorePassword("secret");
     sslContextFactory.setKeyManagerPassword("secret");
     sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
+    sslContextFactory.setUseCipherSuitesOrder(true);
 
     // HTTPS Configuration
     HttpConfiguration httpsConfig = new HttpConfiguration(http11Config);

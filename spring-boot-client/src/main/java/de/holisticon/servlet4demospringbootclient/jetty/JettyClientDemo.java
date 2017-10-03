@@ -103,6 +103,7 @@ public class JettyClientDemo {
     sslContextFactory.setKeyStorePassword("secret");
     sslContextFactory.setKeyManagerPassword("secret");
     sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
+    sslContextFactory.setUseCipherSuitesOrder(true);
     return sslContextFactory;
   }
 
