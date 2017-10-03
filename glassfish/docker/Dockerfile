@@ -1,5 +1,5 @@
 FROM oracle/glassfish:nightly-web
-MAINTAINER Rahman Usta<rahmanusta@kodedu.com>
+MAINTAINER Jan Weinschenker <jan.weinschenker@holisticon.de>
 COPY ./Servlet4Push.war /glassfish5/glassfish/domains/domain1/autodeploy
 EXPOSE 8080:8080
 EXPOSE 8181:8181

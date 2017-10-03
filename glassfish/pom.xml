@@ -29,13 +29,15 @@
                     <execution>
                         <id>default-compile</id>
                         <configuration>
+                            <verbose>true</verbose>
                             <jdkToolchain>
-                                <version>1.8</version>
+                                <version>9</version>
                             </jdkToolchain>
-                            <source>8</source>
-                            <target>8</target>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                            <release>8</release>
                             <compilerArguments>
-                            <!--<endorseddirs>${endorsed.dir}</endorseddirs> -->
+                                <!--<endorseddirs>${endorsed.dir}</endorseddirs> -->
                             </compilerArguments>
                         </configuration>
                     </execution>
