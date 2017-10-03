@@ -51,6 +51,7 @@ public class Application {
     NegotiatingServerConnectionFactory.checkProtocolNegotiationAvailable();
     ALPNServerConnectionFactory alpnServerConnectionFactory = new ALPNServerConnectionFactory();
     alpnServerConnectionFactory.setDefaultProtocol("h2");
+    alpnServerConnectionFactory.getALPNProcessor();
 
     // SSL Connection Factory
     SslConnectionFactory sslConnectionFactory = new SslConnectionFactory(sslContextFactory, alpnServerConnectionFactory.getProtocol());

@@ -74,8 +74,8 @@
             <artifactId>alpn-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.mortbay.jetty.alpn</groupId>
-            <artifactId>alpn-boot</artifactId>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-alpn-java-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
