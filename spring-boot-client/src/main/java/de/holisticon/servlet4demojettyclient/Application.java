@@ -1,6 +1,6 @@
-package de.holisticon.servlet4demospringbootclient;
+package de.holisticon.servlet4demojettyclient;
 
-import de.holisticon.servlet4demospringbootclient.dto.Greeting;
+import de.holisticon.servlet4demojettyclient.dto.Greeting;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -23,15 +22,19 @@ public class Application {
 
   private static final Logger LOG = Logger.getLogger(Application.class);
 
+  private RestTemplate okHttpRestTemplate;
+
+  @Autowired
+  public Application(@Qualifier("okHttpRestTemplate") RestTemplate okHttpRestTemplate) {
+    this.okHttpRestTemplate = okHttpRestTemplate;
+  }
+
   public static void main(String[] args) {
     SpringApplication
         .run(Application.class)
         .close();
   }
 
-  @Autowired
-  @Qualifier("okHttpRestTemplate")
-  private RestTemplate okHttpRestTemplate;
 
   @Bean
   public CommandLineRunner run() throws Exception {
@@ -54,11 +57,6 @@ public class Application {
           "https://" + host + ":" + 8181 + "/Servlet4Push/http2", String.class);
       LOG.info(response.substring(0, 20));
     };
-  }
-
-  @Bean(name = "okHttpRestTemplate")
-  public RestTemplate restTemplate() {
-    return new RestTemplate(new OkHttp3ClientHttpRequestFactory());
   }
 
 

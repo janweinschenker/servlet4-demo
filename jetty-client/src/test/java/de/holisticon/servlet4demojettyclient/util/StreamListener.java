@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demospringbootclient.util;
+package de.holisticon.servlet4demojettyclient.util;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.http2.api.Stream;

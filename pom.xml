@@ -23,13 +23,40 @@
         <module>jetty-client</module>
         <module>glassfish</module>
     </modules>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/janweinschenker/servlet4-demo</url>
+        <notifiers />
+    </ciManagement>
+
+    <scm>
+        <url>https://github.com/mprins/maven-compass-example</url>
+        <connection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</connection>
+        <developerConnection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</developerConnection>
+        <tag>master</tag>
+    </scm>
+
+    <organization>
+        <name>Holisticon AG</name>
+        <url>http://www.holisticon.de</url>
+    </organization>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>9</java.version>
         <jetty.version>9.4.7.v20170914</jetty.version>
         <spring-boot-starter.version>2.0.0.M3</spring-boot-starter.version>
-        <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.18</lombok.version>
         <alpn-api.version>1.1.3.v20160715</alpn-api.version>
         <junit.version>4.12</junit.version>
@@ -73,11 +100,6 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jetty.http2</groupId>
@@ -169,6 +191,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <defaultGoal>clean jacoco:prepare-agent install jacoco:report coveralls:report </defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
