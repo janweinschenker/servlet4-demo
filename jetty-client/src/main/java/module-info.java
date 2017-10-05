@@ -1,7 +1,5 @@
 @SuppressWarnings({"deprecation", "removal"})
-    module de.holisticon.servlet4demospringbootclient {
-
-  requires java.se.ee;
+    module de.holisticon.servlet4demojettyclient {
 
   requires spring.core;
   requires spring.beans;
@@ -21,5 +19,5 @@
   requires jetty.util;
   requires jackson.annotations;
 
-  exports de.holisticon.servlet4demospringbootclient;
+  exports de.holisticon.servlet4demojettyclient;
 }

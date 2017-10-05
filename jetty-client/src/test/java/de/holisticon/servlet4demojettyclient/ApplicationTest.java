@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demospringbootclient;
+package de.holisticon.servlet4demojettyclient;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demospringbootclient.dto;
+package de.holisticon.servlet4demojettyclient.dto;
 
 public class Greeting {
   private long id;

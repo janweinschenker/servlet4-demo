@@ -1,6 +1,6 @@
-package de.holisticon.servlet4demospringbootclient;
+package de.holisticon.servlet4demojettyclient;
 
-import de.holisticon.servlet4demospringbootclient.jetty.JettyClientDemo;
+import de.holisticon.servlet4demojettyclient.jetty.JettyClientDemo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
