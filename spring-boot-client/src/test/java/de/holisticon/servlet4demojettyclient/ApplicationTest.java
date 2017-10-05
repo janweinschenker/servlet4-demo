@@ -67,8 +67,7 @@ public class ApplicationTest {
   }
 
   @Test
-  public void testMain() {
-    Application.main(new String[]{"hello"});
+  public void contextLoads() {
   }
 
 }
