@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/janweinschenker/servlet4-demo.svg?branch=master)](https://travis-ci.org/janweinschenker/servlet4-demo)
 [![Coverage Status](https://coveralls.io/repos/github/janweinschenker/servlet4-demo/badge.svg?branch=master)](https://coveralls.io/github/janweinschenker/servlet4-demo?branch=master)
 
 
