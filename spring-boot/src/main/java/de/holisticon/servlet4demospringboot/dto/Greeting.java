@@ -1,10 +1,20 @@
 package de.holisticon.servlet4demospringboot.dto;
 
-import lombok.Data;
-
-@Data
 public class Greeting {
-  private final long id;
-  private final String content;
+  private long id;
 
+  public Greeting(long id, String content) {
+    this.id = id;
+    this.content = content;
+  }
+
+  private String content;
+
+  public long getId() {
+    return id;
+  }
+
+  public String getContent() {
+    return content;
+  }
 }

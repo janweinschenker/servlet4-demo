@@ -99,10 +99,8 @@ public class JettyClientDemo {
   public static SslContextFactory getSslContextFactory() {
 
     SslContextFactory sslContextFactory = new SslContextFactory();
-    sslContextFactory.setKeyStoreResource(newClassPathResource("sample.jks"));
-    sslContextFactory.setKeyStorePassword("secret");
-    sslContextFactory.setKeyManagerPassword("secret");
     sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);
+    sslContextFactory.setUseCipherSuitesOrder(true);
     return sslContextFactory;
   }
 

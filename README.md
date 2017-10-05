@@ -1,3 +1,6 @@
+[![Coverage Status](https://coveralls.io/repos/github/janweinschenker/servlet4-demo/badge.svg?branch=master)](https://coveralls.io/github/janweinschenker/servlet4-demo?branch=master)
+
+
 # How to ...
 
 ## Build this project

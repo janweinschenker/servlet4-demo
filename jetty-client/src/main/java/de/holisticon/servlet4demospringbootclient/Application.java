@@ -1,15 +1,12 @@
 package de.holisticon.servlet4demospringbootclient;
 
-import de.holisticon.servlet4demospringbootclient.dto.Greeting;
+import de.holisticon.servlet4demospringbootclient.jetty.JettyClientDemo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Hello world!
@@ -30,8 +27,7 @@ public class Application {
   }
 
   @Autowired
-  @Qualifier("okHttpRestTemplate")
-  private RestTemplate okHttpRestTemplate;
+  JettyClientDemo jettyClientDemo;
 
   @Bean
   public CommandLineRunner run() throws Exception {
@@ -39,26 +35,14 @@ public class Application {
       String host = "localhost";
       int port = 8444;
       String path = "/greeting?name=JavaLand";
-      LOG.info("========================= restTemplate jetty -> jetty server");
-      Greeting greeting = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + port + path, Greeting.class);
-      LOG.info(greeting.toString());
+      jettyClientDemo.performAsyncHttpRequest(host, port, path);
+      jettyClientDemo.performDefaultHttpRequest(host, port, path);
+      jettyClientDemo.performHttpRequestReceivePush(host, port, path);
 
-      LOG.info("========================= okHttpTemplate -> jetty server");
-      Greeting greeting3 = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + port + path, Greeting.class);
-      LOG.info(greeting3.toString());
-
-      LOG.info("========================= okHttpTemplate -> glassfish");
-      String response = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + 8181 + "/Servlet4Push/http2", String.class);
-      LOG.info(response.substring(0, 20));
+      LOG.info("========================= jetty - receive server push ");
+      jettyClientDemo.performHttpRequestReceivePush(host, 8181, "/Servlet4Push/http2");
+      System.exit(0);
     };
-  }
-
-  @Bean(name = "okHttpRestTemplate")
-  public RestTemplate restTemplate() {
-    return new RestTemplate(new OkHttp3ClientHttpRequestFactory());
   }
 
 
