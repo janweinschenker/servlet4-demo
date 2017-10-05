@@ -13,7 +13,12 @@
   requires spring.boot.autoconfigure;
 
   requires log4j.over.slf4j;
-  requires okhttp;
+  requires http2.client;
+  requires http2.http.client.transport;
+  requires http2.common;
+  requires jetty.client;
+  requires jetty.http;
+  requires jetty.util;
   requires jackson.annotations;
 
   exports de.holisticon.servlet4demospringbootclient;

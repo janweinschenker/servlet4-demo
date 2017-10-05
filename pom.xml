@@ -20,6 +20,7 @@
     <modules>
         <module>spring-boot</module>
         <module>spring-boot-client</module>
+        <module>jetty-client</module>
         <module>glassfish</module>
     </modules>
     <properties>
@@ -173,26 +174,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
-                <executions>
-                    <execution>
-                        <id>default-compile</id>
-                        <configuration>
-                            <!-- compile everything to ensure module-info contains right entries -->
-                            <!-- required when JAVA_HOME is JDK 8 or below -->
-                            <jdkToolchain>
-                                <version>9</version>
-                            </jdkToolchain>
-                            <release>9</release>
-                            <fork>true</fork>
-                        </configuration>
-                    </execution>
-                </executions>
-                <!-- defaults for compile and testCompile -->
                 <configuration>
-                    <!-- jdkToolchain required when JAVA_HOME is JDK 9 or above -->
-                    <jdkToolchain>
-                        <version>9</version>
-                    </jdkToolchain>
                     <source>9</source>
                     <target>9</target>
                 </configuration>
