@@ -3,6 +3,7 @@ package de.holisticon.servlet4demospringboot;
 import de.holisticon.servlet4demospringboot.dto.Greeting;
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,13 @@ public class GreetingController {
   private static final String template = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();
 
+  public JettyServerPushFunction jettyServerPushFunction;
+
+  @Autowired
+  public GreetingController(JettyServerPushFunction jettyServerPushFunction) {
+    this.jettyServerPushFunction = jettyServerPushFunction;
+  }
+
   /**
    * @param request
    * @param name
@@ -29,7 +37,6 @@ public class GreetingController {
    */
   @RequestMapping("/greeting")
   public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
-
 
     HttpServletRequest httpServletRequest = (HttpServletRequest) request;
     if (httpServletRequest != null) {
@@ -44,13 +51,8 @@ public class GreetingController {
       }
     }
 
+    jettyServerPushFunction.jettyServerPush(request);
 
-    org.eclipse.jetty.server.PushBuilder jettyPushBuilder = Request
-        .getBaseRequest(request)
-        .getPushBuilder();
-    jettyPushBuilder
-        .path("/push-greeting?name=push")
-        .push();
     return new Greeting(counter.incrementAndGet(),
                         String.format(template, name));
   }
