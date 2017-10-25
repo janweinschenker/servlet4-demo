@@ -3,6 +3,7 @@ package de.holisticon.servlet4demo.jettyclient;
 import de.holisticon.servlet4demo.jettyclient.jetty.JettyClientDemo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,27 +21,30 @@ public class Application {
 
   private static final Logger LOG = Logger.getLogger(Application.class);
 
+  @Value("${server.port}")
+  private int http2Port;
+
+  @Value("${server.port.http}")
+  private int httpPort;
+
+  @Autowired
+  JettyClientDemo jettyClientDemo;
+
   public static void main(String[] args) {
     SpringApplication
         .run(Application.class)
         .close();
   }
 
-  @Autowired
-  JettyClientDemo jettyClientDemo;
-
   @Bean
   public CommandLineRunner run() throws Exception {
     return args -> {
       String host = "localhost";
-      int port = 8444;
       String path = "/greeting?name=JavaLand";
-      jettyClientDemo.performAsyncHttpRequest(host, port, path);
-      jettyClientDemo.performDefaultHttpRequest(host, port, path);
-      jettyClientDemo.performHttpRequestReceivePush(host, port, path);
+      jettyClientDemo.performAsyncHttpRequest(host, http2Port, path);
+      jettyClientDemo.performDefaultHttpRequest(host, http2Port, path);
+      jettyClientDemo.performHttpRequestReceivePush(host, http2Port, path);
 
-      LOG.info("========================= jetty - receive server push ");
-      jettyClientDemo.performHttpRequestReceivePush(host, 8181, "/Servlet4Push/http2");
       System.exit(0);
     };
   }

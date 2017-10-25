@@ -11,12 +11,12 @@ The demo is a  Maven mulit-module project that consists of these modules:
 
 | Module | Description |
 | --- | --- |
-| [client-jetty](client-jetty/README.md) | An http2 client implemented with spring boot 2 and Jetty's http client.|
+| [client-jetty](client-jetty/README.md) | An http2 client implemented with Jetty's http client.|
 | [client-okhttp](client-okhttp/README.md) | An http2 client implemented with spring boot 2 and OkHttp's http client. |
-| [server-glassfish](server-glassfish/README.md)| An http2 servlet that runs on a Glassfish 5 application server. |
-| [server-jetty](server-jetty/README.md) | An http2 rest controller that is implemented with spring boot 2 and Jetty's embedded http server. |
-| [server-tomcat](server-tomcat/README.md) | An http2 rest controller that is implemented with spring boot 2 and Tomcat's embedded http server. |
-| [server-undertow](server-undertow/README.md) | An http2 rest controller that is implemented with spring boot 2 and Undertows's embedded http server. |
+| [server-glassfish](server-glassfish/README.md)| An http2 servlet that runs on a Glassfish 5 application server. Will use local port 8181 for http2.|
+| [server-jetty](server-jetty/README.md) | An http2 rest controller that is implemented with spring boot 2 and Jetty's embedded http server. Will use local port 8447 for http2 and 8087 for http 1.1.|
+| [server-tomcat](server-tomcat/README.md) | An http2 rest controller that is implemented with spring boot 2 and Tomcat's embedded http server. Will use local port 8449 for http2.|
+| [server-undertow](server-undertow/README.md) | An http2 rest controller that is implemented with spring boot 2 and Undertows's embedded http server. Will use local port 8448 for http2.|
 
 ## Requirements: needs Java 9
 
