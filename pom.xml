@@ -18,12 +18,12 @@
     </parent>
 
     <modules>
-        <module>spring-boot</module>
-        <module>spring-boot-client</module>
-        <module>jetty-client</module>
+        <module>server-jetty</module>
+        <module>client-okhttp</module>
+        <module>client-jetty</module>
         <module>glassfish</module>
-        <module>spring-boot-undertow-server</module>
-        <module>servlet4-demo-spring-boot-tomcat-server</module>
+        <module>server-undertow</module>
+        <module>server-tomcat</module>
     </modules>
 
     <licenses>
