@@ -66,8 +66,13 @@
         <okio.version>1.11.0</okio.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         <httpclient5.version>5.0-alpha2</httpclient5.version>
-        <server-tomcat.https.port>8448</server-tomcat.https.port>
-        <server-tomcat.http.port>8088</server-tomcat.http.port>
+        <!-- server ports -->
+        <server-jetty.https.port>8447</server-jetty.https.port>
+        <server-jetty.http.port>8087</server-jetty.http.port>
+        <server-tomcat.https.port>8449</server-tomcat.https.port>
+        <server-tomcat.http.port>8089</server-tomcat.http.port>
+        <server-undertow.https.port>8448</server-undertow.https.port>
+        <server-undertow.http.port>8088</server-undertow.http.port>
     </properties>
 
     <dependencyManagement>
@@ -200,6 +205,16 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>sample.jks</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>sample.jks</include>
+                </includes>
             </resource>
         </resources>
         <plugins>

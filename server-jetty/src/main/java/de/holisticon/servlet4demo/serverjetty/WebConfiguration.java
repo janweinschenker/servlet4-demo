@@ -5,6 +5,7 @@ import org.eclipse.jetty.http2.HTTP2Cipher;
 import org.eclipse.jetty.http2.server.HTTP2ServerConnectionFactory;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,6 +24,12 @@ import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
 @EnableWebMvc
 @ComponentScan(basePackageClasses = WebConfiguration.class)
 public class WebConfiguration implements WebMvcConfigurer {
+
+  @Value("${server.port}")
+  private int httpsPort;
+
+  @Value("${server.port.http}")
+  private int httpPort;
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
@@ -43,7 +50,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     // HTTP Configuration
     HttpConfiguration http11Config = new HttpConfiguration();
     http11Config.setSecureScheme("https");
-    http11Config.setSecurePort(8443);
+    http11Config.setSecurePort(httpsPort);
 
     // SSL Context Factory for HTTPS and HTTP/2
     SslContextFactory sslContextFactory = new SslContextFactory();
@@ -71,7 +78,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     // HTTP/2 Connector
     ServerConnector http2Connector =
         new ServerConnector(server, sslConnectionFactory, alpnServerConnectionFactory, h2, new HttpConnectionFactory(httpsConfig));
-    http2Connector.setPort(8444);
+    http2Connector.setPort(httpPort);
     server.addConnector(http2Connector);
 
     return server;
