@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demo.servertomcat.servlet4demo.serverglassfish;
+package de.holisticon.servlet4demo.serverglassfish;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
