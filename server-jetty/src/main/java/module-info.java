@@ -1,4 +1,4 @@
-module de.holisticon.servlet4demospringboot {
+module de.holisticon.servlet4demo.serverjetty {
 
   requires spring.core;
   requires spring.beans;
@@ -20,5 +20,5 @@ module de.holisticon.servlet4demospringboot {
   requires spring.webmvc;
   requires log4j.over.slf4j;
 
-  exports de.holisticon.servlet4demospringboot;
+  exports de.holisticon.servlet4demo.serverjetty;
 }

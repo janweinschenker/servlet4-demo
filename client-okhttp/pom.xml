@@ -22,7 +22,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>de.holisticon.servlet4demojettyclient.Application</mainClass>
+                    <mainClass>Application</mainClass>
                 </configuration>
             </plugin>
             <plugin>

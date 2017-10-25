@@ -1,5 +1,5 @@
 @SuppressWarnings({"deprecation", "removal"})
-    module de.holisticon.servlet4demojettyclient {
+    module de.holisticon.servlet4demo.jettyclient {
 
   requires spring.core;
   requires spring.beans;
@@ -19,5 +19,5 @@
   requires jetty.util;
   requires jackson.annotations;
 
-  exports de.holisticon.servlet4demojettyclient;
+  exports de.holisticon.servlet4demo.jettyclient;
 }

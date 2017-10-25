@@ -21,7 +21,7 @@
         <module>server-jetty</module>
         <module>client-okhttp</module>
         <module>client-jetty</module>
-        <module>glassfish</module>
+        <module>server-glassfish</module>
         <module>server-undertow</module>
         <module>server-tomcat</module>
     </modules>

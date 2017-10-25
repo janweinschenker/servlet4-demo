@@ -1,4 +1,4 @@
-module de.holisticon.servlet4demospringbootclient {
+module de.holisticon.servlet4demo.okhttpclient {
 
   requires spring.core;
   requires spring.expression;
@@ -13,5 +13,5 @@ module de.holisticon.servlet4demospringbootclient {
   requires log4j.over.slf4j;
 
 
-  exports de.holisticon.servlet4demojettyclient;
+  exports de.holisticon.servlet4demo.okhttpclient;
 }
