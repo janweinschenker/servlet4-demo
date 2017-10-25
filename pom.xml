@@ -23,6 +23,7 @@
         <module>jetty-client</module>
         <module>glassfish</module>
         <module>spring-boot-undertow-server</module>
+        <module>servlet4-demo-spring-boot-tomcat-server</module>
     </modules>
 
     <licenses>

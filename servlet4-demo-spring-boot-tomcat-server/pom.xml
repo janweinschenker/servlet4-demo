@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.holisticon</groupId>
-    <artifactId>servlet4-demo-spring-boot-undertow-server</artifactId>
+    <artifactId>servlet4-demo-spring-boot-tomcat-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>servlet4-demo-spring-boot-undertow-server</name>
+    <name>servlet4-demo-spring-boot-tomcat-server</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -55,7 +55,22 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>9.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-el</artifactId>
+            <version>9.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>9.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -70,7 +85,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>de.holisticon.Application</mainClass>
+                    <mainClass>de.holisticon.servlet4demospringboot.Application</mainClass>
                 </configuration>
             </plugin>
             <plugin>
