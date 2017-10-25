@@ -26,6 +26,9 @@ The following requirements must be met by your development environment:
 * Java Development Kit 9
   * JAVA_HOME environment variable must be set to point to a JDK 9 installation.
 * Docker - required to run the Glassfish server.
+* Import the demo servers' TLS certificates into your local Java keystore.
+  * Run this shell script:
+  * `./server-jetty/script/import-server-cert.sh`
 
 
 ## Build this project
