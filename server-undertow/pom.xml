@@ -70,7 +70,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>de.holisticon.Application</mainClass>
+                    <mainClass>de.holisticon.servlet4demo.serverundertow.Application</mainClass>
                 </configuration>
             </plugin>
             <plugin>

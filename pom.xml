@@ -38,7 +38,7 @@
     <ciManagement>
         <system>Travis</system>
         <url>https://travis-ci.org/janweinschenker/servlet4-demo</url>
-        <notifiers />
+        <notifiers/>
     </ciManagement>
 
     <scm>
@@ -66,6 +66,8 @@
         <okio.version>1.11.0</okio.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         <httpclient5.version>5.0-alpha2</httpclient5.version>
+        <server-tomcat.https.port>8448</server-tomcat.https.port>
+        <server-tomcat.http.port>8088</server-tomcat.http.port>
     </properties>
 
     <dependencyManagement>
@@ -193,7 +195,13 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <defaultGoal>clean jacoco:prepare-agent install jacoco:report coveralls:report </defaultGoal>
+        <defaultGoal>clean jacoco:prepare-agent install jacoco:report coveralls:report</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -260,6 +268,19 @@
                     <repoToken>${COVERALL_TOKEN}</repoToken>
                 </configuration>
             </plugin>
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            -->
         </plugins>
         <pluginManagement>
             <plugins>
