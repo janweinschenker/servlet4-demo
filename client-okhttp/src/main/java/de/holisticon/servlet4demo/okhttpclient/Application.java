@@ -55,4 +55,11 @@ public class Application {
     };
   }
 
+
+  public void getRespResponse(){
+    RestTemplate okHttpRestTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
+    Greeting greeting = okHttpRestTemplate.getForObject(
+        "https://localhost:8443/greeting", Greeting.class);
+
+  }
 }
