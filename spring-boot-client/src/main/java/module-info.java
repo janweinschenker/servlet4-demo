@@ -7,11 +7,10 @@ module de.holisticon.servlet4demospringbootclient {
 
   requires okhttp;
   requires jackson.annotations;
-  requires log4j.over.slf4j;
   requires spring.beans;
   requires spring.context;
   requires  spring.web;
-
+  requires log4j.over.slf4j;
 
 
   exports de.holisticon.servlet4demojettyclient;
