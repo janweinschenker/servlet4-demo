@@ -16,6 +16,7 @@ The demo is a  Maven mulit-module project that consists of these modules:
 | [server-jetty](server-jetty/README.md) | An http2 rest controller that is implemented with spring boot 2 and Jetty's embedded http server. Will use local port 8447 for http2 and 8087 for http 1.1.|
 | [server-tomcat](server-tomcat/README.md) | An http2 rest controller that is implemented with spring boot 2 and Tomcat's embedded http server. Will use local port 8449 for http2.|
 | [server-undertow](server-undertow/README.md) | An http2 rest controller that is implemented with spring boot 2 and Undertows's embedded http server. Will use local port 8448 for http2.|
+| [demo-util](demo-util/README.md) | Common and utility stuff. |
 
 ## Requirements: needs Java 9
 
