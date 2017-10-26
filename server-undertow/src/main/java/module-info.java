@@ -15,7 +15,6 @@ module de.holisticon.servlet4demo.serverundertow {
   requires spring.boot;
   requires spring.boot.autoconfigure;
 
-  requires jackson.annotations;
   requires log4j.over.slf4j;
   requires undertow.core;
 
