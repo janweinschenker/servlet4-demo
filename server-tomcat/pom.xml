@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.holisticon</groupId>
-    <artifactId>servlet4-demo-spring-boot-tomcat-server</artifactId>
+    <artifactId>servlet4-demo-server-tomcat</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>servlet4-demo-spring-boot-tomcat-server</name>
+    <name>servlet4-demo-server-tomcat</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -24,6 +24,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-util</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>

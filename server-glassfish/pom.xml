@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>servlet4-demo-glassfish</artifactId>
+    <artifactId>servlet4-demo-server-glassfish</artifactId>
     <packaging>war</packaging>
 
-    <name>servlet4-demo-glassfish</name>
+    <name>servlet4-demo-server-glassfish</name>
     <url>http://maven.apache.org</url>
 
     <properties>

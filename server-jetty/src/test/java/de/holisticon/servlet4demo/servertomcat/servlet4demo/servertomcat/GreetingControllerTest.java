@@ -1,8 +1,8 @@
 package de.holisticon.servlet4demo.servertomcat.servlet4demo.servertomcat;
 
+import de.holisticon.servlet4demo.Greeting;
 import de.holisticon.servlet4demo.serverjetty.GreetingController;
 import de.holisticon.servlet4demo.serverjetty.JettyServerPushFunction;
-import de.holisticon.servlet4demo.serverjetty.dto.Greeting;
 import org.eclipse.jetty.server.Request;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,8 @@ import javax.servlet.http.PushBuilder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GreetingControllerTest {
 
@@ -56,7 +57,7 @@ public class GreetingControllerTest {
   }
 
   @Test
-  public void testPushGreeting(){
+  public void testPushGreeting() {
     Greeting greeting = this.greetingController.pushGreeting("JavaLandTest");
     assertNotNull(greeting);
     assertEquals("Hello, JavaLandTest!", greeting.getContent());

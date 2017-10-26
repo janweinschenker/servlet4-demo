@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.serverjetty;
 
-import de.holisticon.servlet4demo.serverjetty.dto.Greeting;
+import de.holisticon.servlet4demo.Greeting;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

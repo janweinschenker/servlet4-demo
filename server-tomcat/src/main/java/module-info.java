@@ -1,5 +1,7 @@
 module de.holisticon.servlet4demo.servertomcat {
 
+  requires de.holisticon.servlet4demo;
+
   requires java.management;
 
   requires spring.core;
@@ -8,11 +10,11 @@ module de.holisticon.servlet4demo.servertomcat {
   requires spring.aop;
   requires spring.web;
   requires spring.expression;
-
   requires spring.boot;
   requires spring.boot.autoconfigure;
-  requires jackson.annotations;
   requires spring.webmvc;
+
+  requires jackson.annotations;
   requires log4j.over.slf4j;
   requires tomcat.embed.core;
 
