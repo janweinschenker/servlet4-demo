@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.servertomcat;
 
-import de.holisticon.servlet4demo.servertomcat.dto.Greeting;
+import de.holisticon.servlet4demo.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

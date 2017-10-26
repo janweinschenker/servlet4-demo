@@ -44,6 +44,10 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-util</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>

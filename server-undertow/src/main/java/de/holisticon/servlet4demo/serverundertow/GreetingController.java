@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.serverundertow;
 
-import de.holisticon.servlet4demo.serverundertow.dto.Greeting;
+import de.holisticon.servlet4demo.Greeting;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,9 +36,9 @@ public class GreetingController {
         PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
         pushBuilder.path("/push-greeting?name=push");
         pushBuilder.push();
-        LOG.info("##### has pushbuilder");
+        LOG.info("HttpServletRequest");
       } else {
-        LOG.info("##### has no pushbuilder");
+        LOG.info("HttpServletRequest has no pushbuilder");
       }
     }
 

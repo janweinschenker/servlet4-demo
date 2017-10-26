@@ -1,7 +1,6 @@
 package de.holisticon.servlet4demo.okhttpclient;
 
-import de.holisticon.servlet4demo.okhttpclient.Application;
-import de.holisticon.servlet4demo.okhttpclient.dto.Greeting;
+import de.holisticon.servlet4demo.Greeting;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
