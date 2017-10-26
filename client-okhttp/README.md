@@ -16,13 +16,13 @@ purpose:
 
 # Some important code snippets
 
-## Class [de.holisticon.servlet4demo.okhttpclient.ApplicationConfig](de.holisticon.servlet4demo.okhttpclient.ApplicationConfig.java)
+## Class [de.holisticon.servlet4demo.okhttpclient.ApplicationConfig](src/main/java/de/holisticon/servlet4demo/okhttpclient/ApplicationConfig.java)
 This class provides a Spring bean for a `RestTemplate` that is initialized with an OkHttp client factory.
 
 OkHttp is capable of communicating over http/2 without much additional configuration. The only thing to keep in mind is, as mentioned above, that you have to add
 your server's self signed TLS certificate to the JDK's keystore. 
 
-## Class [de.holisticon.servlet4demo.okhttpclient.Application](de.holisticon.servlet4demo.okhttpclient.Application.java)
+## Class [de.holisticon.servlet4demo.okhttpclient.Application](src/main/java/de/holisticon/servlet4demo/okhttpclient/Application.java)
 This class obtains an instance of the `RestTemplate` we created in our `ApplicationConfig`.
 
 This instance is used to contact tomcat server we started earlier.
