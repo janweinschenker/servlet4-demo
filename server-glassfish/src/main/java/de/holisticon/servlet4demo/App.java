@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demo.servertomcat;
+package de.holisticon.servlet4demo;
 
 /**
  * Hello world!

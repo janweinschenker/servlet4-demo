@@ -1,55 +1,38 @@
 package de.holisticon.servlet4demo.servertomcat;
 
 import de.holisticon.servlet4demo.servertomcat.dto.Greeting;
-import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.PushBuilder;
 import java.util.concurrent.atomic.AtomicLong;
 
-
 @RestController
 public class GreetingController {
 
-  private static final Logger LOG = Logger.getLogger(GreetingController.class);
-
-  private static final String template = "Hello, %s!";
+  private static final String TEMPLATE = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();
 
-  /**
-   * @param request
-   * @param name
-   * @return
-   * @see org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver
-   */
   @RequestMapping("/greeting")
-  public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
+  public Greeting greeting(
+      HttpServletRequest request,
+      @RequestParam(value = "name", defaultValue = "World") String name) {
 
-    HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-    if (httpServletRequest != null) {
-      LOG.info("can cast to HttpServletRequest");
-      if (request != null && httpServletRequest.newPushBuilder() != null) {
-        PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
-        pushBuilder.path("/push-greeting?name=push");
-        pushBuilder.push();
-        LOG.info("##### has pushbuilder");
-      } else {
-        LOG.info("##### has no pushbuilder");
-      }
-    }
+    PushBuilder pushBuilder = request.newPushBuilder();
+    pushBuilder.path("/push-greeting?name=push");
+    pushBuilder.push();
 
     return new Greeting(counter.incrementAndGet(),
-                        String.format(template, name));
+                        String.format(TEMPLATE, name));
   }
 
   @RequestMapping("/push-greeting")
-  public Greeting pushGreeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+  public Greeting pushGreeting(
+      @RequestParam(value = "name",
+          defaultValue = "World") String name) {
     return new Greeting(counter.incrementAndGet(),
-                        String.format(template, name));
+                        String.format(TEMPLATE, name));
   }
-
 }

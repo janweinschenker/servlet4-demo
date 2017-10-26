@@ -4,10 +4,12 @@ import de.holisticon.servlet4demo.okhttpclient.dto.Greeting;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -23,6 +25,9 @@ public class Application {
   private static final Logger LOG = Logger.getLogger(Application.class);
 
   private RestTemplate okHttpRestTemplate;
+
+  @Value("${server.port}")
+  private int httpPort;
 
   @Autowired
   public Application(@Qualifier("okHttpRestTemplate") RestTemplate okHttpRestTemplate) {
@@ -40,24 +45,13 @@ public class Application {
   public CommandLineRunner run() throws Exception {
     return args -> {
       String host = "localhost";
-      int port = 8444;
       String path = "/greeting?name=JavaLand";
-      LOG.info("========================= restTemplate jetty -> jetty server");
+      LOG.info("========================= restTemplate okHttp client => tomcat server ==============");
       Greeting greeting = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + port + path, Greeting.class);
+          "https://" + host + ":" + httpPort + path, Greeting.class);
       LOG.info(greeting.toString());
+      LOG.info("====================================================================================");
 
-      LOG.info("========================= okHttpTemplate -> jetty server");
-      Greeting greeting3 = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + port + path, Greeting.class);
-      LOG.info(greeting3.toString());
-
-      LOG.info("========================= okHttpTemplate -> glassfish");
-      String response = okHttpRestTemplate.getForObject(
-          "https://" + host + ":" + 8181 + "/Servlet4Push/http2", String.class);
-      LOG.info(response.substring(0, 20));
     };
   }
-
-
 }

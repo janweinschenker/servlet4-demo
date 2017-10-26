@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.serverundertow;
 
-import io.undertow.Undertow; // do not remove this import, unless you want the java8 build to fail
+import io.undertow.Undertow; // do not remove this import, unless you want the java9 build to fail
 import io.undertow.UndertowOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

@@ -60,7 +60,7 @@ public class ApplicationTest {
   public void testRun() {
     try {
       sut.run();
-      verify(okHttpRestTemplate, Mockito.times(2))
+      verify(okHttpRestTemplate, Mockito.times(1))
           .getForObject(anyString(), same(Greeting.class));
     } catch (Exception e) {
       fail();
