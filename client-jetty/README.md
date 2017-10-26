@@ -1,4 +1,4 @@
-# An http2 client build with Jetty
+# An http2 client built with Jetty
 
 This module project shows the Jetty http client and its ability to communicate with http2 servers.
 

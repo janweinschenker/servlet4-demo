@@ -28,6 +28,7 @@ public class Application {
     factory.addBuilderCustomizers(
         builder -> builder
             .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
+            .setServerOption(UndertowOptions.HTTP2_SETTINGS_ENABLE_PUSH, true)
             .addHttpListener(httpPort, "0.0.0.0"));
     return factory;
   }
