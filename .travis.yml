@@ -2,8 +2,8 @@ language: java
 jdk: oraclejdk9
 
 install:
-  - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V -P no-docker
 script:
-  - mvn clean jacoco:prepare-agent install jacoco:report
+  - mvn clean jacoco:prepare-agent install jacoco:report  -P no-docker
 after_success:
-  - mvn coveralls:report
+  - mvn coveralls:report -P no-docker
