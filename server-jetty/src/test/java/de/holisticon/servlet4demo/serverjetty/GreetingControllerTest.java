@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demo.servertomcat.servlet4demo.servertomcat;
+package de.holisticon.servlet4demo.serverjetty;
 
 import de.holisticon.servlet4demo.Greeting;
 import de.holisticon.servlet4demo.serverjetty.GreetingController;
