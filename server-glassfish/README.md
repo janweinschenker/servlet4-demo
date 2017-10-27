@@ -24,3 +24,6 @@ file from the target directory of this module.
 Our Servlet that implements version 4 of the servlet api. It is mapped to the URL [https://localhost:8181/Servlet4Push/http2](https://localhost:8181/Servlet4Push/http2).
 
 When this link is opened with a web browser, the server will serve a small HTML snippet and it will issue a push promise for an image of a vicious cat.
+
+Additionally, a second push promise is offered. The second one promises a JSON response from a second servlet, that is implemented with the class
+[de.holisticon.servlet4demo.serverglassfish.Http2JsonServlet](src/main/java/de/holisticon/servlet4demo/serverglassfish/Http2JsonServlet.java)
