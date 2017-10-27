@@ -7,6 +7,11 @@ This module shows how to build Web Services with the Glassfish application serve
 1. Run `$ mvn clean install`
    * This will compile and package the Java code. Furthermore, it will build
     the docker image that contains the running Glassfish server.
+    * If you want to build this project without creating the docker container, use the **no-docker** profile:
+    
+    ```
+    you@there:~/servlet4-demo$ mvn clean install -P no-docker
+    ```
 1. Execute the script [./docker/run.sh](./docker/run.sh) to start the docker container. If you have a Windows environment,
 use [./docker/run.cmd](./docker/run.cmd)
 1. The server will start and be available at [https://localhost:8181/Servlet4Push/http2](https://localhost:8181/Servlet4Push/http2)

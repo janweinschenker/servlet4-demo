@@ -37,6 +37,12 @@ The following requirements must be met by your development environment:
 you@there:~/servlet4-demo$ mvn clean install
 ```
 
+If you want to build this project without creating the docker container from module [server-glassfish](server-glassfish/README.md), use the **no-docker** profile:
+
+```
+you@there:~/servlet4-demo$ mvn clean install -P no-docker
+```
+
 ## Run the demos
 
 Please refer to the readme files of the modules.
