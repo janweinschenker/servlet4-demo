@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.same;
@@ -68,6 +70,7 @@ public class ApplicationTest {
 
   @Test
   public void contextLoads() {
+    assertNotNull(okHttpRestTemplate);
   }
 
 }
