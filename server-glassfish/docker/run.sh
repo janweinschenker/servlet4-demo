@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --name glassfish-servlet4 -it --rm -d -p 8181:8181 weinschenker/glassfish-servlet4
+docker run --name glassfish-servlet4 -it --rm -d -p 8181:8181 weinschenker/glassfish-servlet4:0.0.1-SNAPSHOT
