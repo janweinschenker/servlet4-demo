@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demo.servertomcat.servlet4demo.okhttpclient;
+package de.holisticon.servlet4demo.jettyclient.jetty;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>servlet4-demo-jetty-client</artifactId>
+    <artifactId>servlet4-demo-client-jetty</artifactId>
     <packaging>jar</packaging>
 
-    <name>servlet4-demo-jetty-client</name>
+    <name>servlet4-demo-client-jetty</name>
     <url>http://maven.apache.org</url>
 
     <properties>
