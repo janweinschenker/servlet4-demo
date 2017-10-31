@@ -32,22 +32,18 @@ public class GreetingController {
   public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
 
     HttpServletRequestImpl httpServletRequest = (HttpServletRequestImpl) request;
-    if (httpServletRequest != null) {
+    HttpServerExchange exchange = httpServletRequest.getExchange();
+    exchange
+        .getConnection()
+        .pushResource("/push-greeting?name=push", Methods.GET, exchange.getRequestHeaders());
+    LOG.info("undertow pushBuilder has pushed resource.");
 
-      LOG.info("can cast to HttpServletRequest");
-      HttpServerExchange exchange = httpServletRequest.getExchange();
-      exchange
-          .getConnection()
-          .pushResource("/push-greeting?name=push", Methods.GET, exchange.getRequestHeaders());
-      LOG.info("undertow pushBuilder has pushed resource.");
-
-      PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
-      if (pushBuilder != null) {
-        pushBuilder.path("/push-greeting?name=push");
-        pushBuilder.push();
-      } else {
-        LOG.info("No servlet4 pushBuilder!");
-      }
+    PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
+    if (pushBuilder != null) {
+      pushBuilder.path("/push-greeting?name=push");
+      pushBuilder.push();
+    } else {
+      LOG.info("No servlet4 pushBuilder!");
     }
 
     return new Greeting(counter.incrementAndGet(),
