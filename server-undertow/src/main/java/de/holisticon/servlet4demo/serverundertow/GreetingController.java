@@ -1,13 +1,15 @@
 package de.holisticon.servlet4demo.serverundertow;
 
 import de.holisticon.servlet4demo.Greeting;
+import io.undertow.server.HttpServerExchange;
+import io.undertow.servlet.spec.HttpServletRequestImpl;
+import io.undertow.util.Methods;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.PushBuilder;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -29,16 +31,22 @@ public class GreetingController {
   @RequestMapping("/greeting")
   public Greeting greeting(ServletRequest request, @RequestParam(value = "name", defaultValue = "World") String name) {
 
-    HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+    HttpServletRequestImpl httpServletRequest = (HttpServletRequestImpl) request;
     if (httpServletRequest != null) {
+
       LOG.info("can cast to HttpServletRequest");
-      if (request != null && httpServletRequest.newPushBuilder() != null) {
-        PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
+      HttpServerExchange exchange = httpServletRequest.getExchange();
+      exchange
+          .getConnection()
+          .pushResource("/push-greeting?name=push", Methods.GET, exchange.getRequestHeaders());
+      LOG.info("undertow pushBuilder has pushed resource.");
+
+      PushBuilder pushBuilder = httpServletRequest.newPushBuilder();
+      if (pushBuilder != null) {
         pushBuilder.path("/push-greeting?name=push");
         pushBuilder.push();
-        LOG.info("HttpServletRequest");
       } else {
-        LOG.info("HttpServletRequest has no pushbuilder");
+        LOG.info("No servlet4 pushBuilder!");
       }
     }
 
