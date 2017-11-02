@@ -28,7 +28,6 @@ public class JettyClientDemoTest {
   private HttpClient httpClient;
   private HTTP2Client http2Client;
   private ContentResponse contentResponse;
-  private Response response;
   private Request request;
   private SslContextFactory sslContextFactory;
   private FuturePromise<Session> sessionPromise;
@@ -40,7 +39,6 @@ public class JettyClientDemoTest {
     httpClient = mock(HttpClient.class);
     http2Client = mock(HTTP2Client.class);
     contentResponse = mock(ContentResponse.class);
-    response = mock(Response.class);
     request = mock(Request.class);
     sslContextFactory = mock(SslContextFactory.class);
     sessionPromise = (FuturePromise<Session>) mock(FuturePromise.class);

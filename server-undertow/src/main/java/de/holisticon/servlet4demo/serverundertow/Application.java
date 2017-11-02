@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.serverundertow;
 
-import io.undertow.Undertow; // do not remove this import, unless you want the java9 build to fail
+import io.undertow.Undertow;
 import io.undertow.UndertowOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -25,12 +25,15 @@ public class Application {
   @Bean
   UndertowServletWebServerFactory embeddedServletContainerFactory() {
     UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
-    factory.addBuilderCustomizers(
-        builder -> builder
-            .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
-            .setServerOption(UndertowOptions.HTTP2_SETTINGS_ENABLE_PUSH, true)
-            .addHttpListener(httpPort, "0.0.0.0"));
+    factory.addBuilderCustomizers(this::customize);
     return factory;
+  }
+
+  void customize(Undertow.Builder builder) {
+    builder
+        .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
+        .setServerOption(UndertowOptions.HTTP2_SETTINGS_ENABLE_PUSH, true)
+        .addHttpListener(httpPort, "0.0.0.0");
   }
 }
 
