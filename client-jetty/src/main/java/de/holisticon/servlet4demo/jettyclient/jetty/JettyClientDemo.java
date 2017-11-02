@@ -9,12 +9,9 @@ import org.eclipse.jetty.http.HttpURI;
 import org.eclipse.jetty.http.HttpVersion;
 import org.eclipse.jetty.http.MetaData;
 import org.eclipse.jetty.http2.api.Session;
-import org.eclipse.jetty.http2.api.Stream;
 import org.eclipse.jetty.http2.api.server.ServerSessionListener;
 import org.eclipse.jetty.http2.client.HTTP2Client;
-import org.eclipse.jetty.http2.frames.DataFrame;
 import org.eclipse.jetty.http2.frames.HeadersFrame;
-import org.eclipse.jetty.http2.frames.PushPromiseFrame;
 import org.eclipse.jetty.util.*;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,30 +97,7 @@ public class JettyClientDemo {
         .getName() + "/" + Jetty.VERSION);
     MetaData.Request metaData = new MetaData.Request("GET", new HttpURI("https://" + host + ":" + port + path), HttpVersion.HTTP_2, requestFields);
     HeadersFrame headersFrame = new HeadersFrame(metaData, null, true);
-    session.newStream(headersFrame, new Promise.Adapter<>(), new Stream.Listener.Adapter() {
-      @Override
-      public void onHeaders(Stream stream, HeadersFrame frame) {
-        LOG.info(frame);
-        if (frame.isEndStream())
-          phaser.arrive();
-      }
-
-      @Override
-      public void onData(Stream stream, DataFrame frame, Callback callback) {
-        LOG.info(frame);
-        callback.succeeded();
-        if (frame.isEndStream())
-          phaser.arrive();
-      }
-
-      @Override
-      public Stream.Listener onPush(Stream stream, PushPromiseFrame frame) {
-        LOG.info(frame);
-        LOG.info(frame.getMetaData());
-        phaser.register();
-        return this;
-      }
-    });
+    session.newStream(headersFrame, new Promise.Adapter<>(), new StreamListener(phaser));
 
     phaser.awaitAdvanceInterruptibly(phaser.arrive(), 5, TimeUnit.SECONDS);
 
