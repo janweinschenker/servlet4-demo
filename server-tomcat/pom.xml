@@ -57,13 +57,8 @@
             <artifactId>tomcat-embed-el</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-websocket</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-annotations-api</artifactId>
-            <version>9.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

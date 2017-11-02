@@ -1,4 +1,4 @@
-package de.holisticon.servlet4demo.servertomcat;
+package de.holisticon.servlet4demo.serverglassfish;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
