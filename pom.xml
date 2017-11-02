@@ -67,6 +67,8 @@
         <okio.version>1.11.0</okio.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         <httpclient5.version>5.0-alpha2</httpclient5.version>
+        <tomcat-embed.version>9.0.1</tomcat-embed.version>
+
         <!-- server ports -->
         <server-jetty.https.port>8447</server-jetty.https.port>
         <server-jetty.http.port>8087</server-jetty.http.port>
@@ -74,7 +76,7 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
-        <tomcat-embed.version>9.0.1</tomcat-embed.version>
+        <mockito-core.version>2.10.0</mockito-core.version>
     </properties>
 
     <dependencyManagement>
@@ -219,6 +221,17 @@
                 <artifactId>tomcat-embed-websocket</artifactId>
                 <version>${tomcat-embed.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>${tomcat-embed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito-core.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -305,19 +318,6 @@
                     <repoToken>${COVERALL_TOKEN}</repoToken>
                 </configuration>
             </plugin>
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <delimiters>
-                        <delimiter>@</delimiter>
-                    </delimiters>
-                    <useDefaultDelimiters>false</useDefaultDelimiters>
-                </configuration>
-            </plugin>
-            -->
         </plugins>
         <pluginManagement>
             <plugins>
