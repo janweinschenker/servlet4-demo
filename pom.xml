@@ -76,6 +76,7 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
+        <mockito-core.version>2.10.0</mockito-core.version>
     </properties>
 
     <dependencyManagement>
@@ -224,6 +225,12 @@
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-annotations-api</artifactId>
                 <version>${tomcat-embed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito-core.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
