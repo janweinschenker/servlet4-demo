@@ -2,12 +2,15 @@ package de.holisticon.servlet4demo.jettyclient;
 
 import de.holisticon.servlet4demo.jettyclient.jetty.JettyClientDemo;
 import org.apache.log4j.Logger;
+import org.eclipse.jetty.util.FuturePromise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.concurrent.Phaser;
 
 /**
  * Hello world!
@@ -18,8 +21,6 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 public class Application {
-
-  private static final Logger LOG = Logger.getLogger(Application.class);
 
   @Value("${server.port}")
   private int http2Port;
@@ -43,9 +44,9 @@ public class Application {
       String path = "/greeting?name=JavaLand";
       jettyClientDemo.performAsyncHttpRequest(host, http2Port, path);
       jettyClientDemo.performDefaultHttpRequest(host, http2Port, path);
-      jettyClientDemo.performHttpRequestReceivePush(host, http2Port, path);
+      jettyClientDemo.performHttpRequestReceivePush(host, http2Port, path, new FuturePromise<>(), new Phaser(2));
 
-      System.exit(0);
+      //System.exit(0);
     };
   }
 
