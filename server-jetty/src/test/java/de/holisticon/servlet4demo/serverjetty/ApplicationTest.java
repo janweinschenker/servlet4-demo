@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class ApplicationTests {
+public class ApplicationTest {
 
   @Autowired
   private GreetingController greetingController;

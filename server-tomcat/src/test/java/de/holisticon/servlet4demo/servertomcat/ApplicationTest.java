@@ -35,6 +35,7 @@ public class ApplicationTest {
   @Test
   public void testTomcatCustomizer() {
     TomcatServletWebServerFactory factory = sut.tomcatCustomizer();
+    @SuppressWarnings("unchecked")
     List<TomcatConnectorCustomizer> tomcatConnectorCustomizers = new ArrayList(factory.getTomcatConnectorCustomizers());
     assertTrue(tomcatConnectorCustomizers.size() == 1);
   }
@@ -42,6 +43,7 @@ public class ApplicationTest {
   @Test
   public void testCustomize() {
     TomcatServletWebServerFactory factory = sut.tomcatCustomizer();
+    @SuppressWarnings("unchecked")
     List<TomcatConnectorCustomizer> tomcatConnectorCustomizers = new ArrayList(factory.getTomcatConnectorCustomizers());
     TomcatConnectorCustomizer customizer = tomcatConnectorCustomizers.get(0);
 

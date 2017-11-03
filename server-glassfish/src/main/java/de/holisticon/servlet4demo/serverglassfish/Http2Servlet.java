@@ -29,7 +29,7 @@ public class Http2Servlet extends HttpServlet {
           .addHeader("content-type", "application/json")
           .push();
     }
-    try (PrintWriter respWriter = resp.getWriter();) {
+    try (PrintWriter respWriter = resp.getWriter()) {
       respWriter.write(new StringBuilder()
                            .append("<html>")
                            .append("<img src='images/cat.jpg'>")
