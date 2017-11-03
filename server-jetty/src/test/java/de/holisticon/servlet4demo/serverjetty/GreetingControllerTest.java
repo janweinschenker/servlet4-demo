@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class GreetingControllerTest {
@@ -43,6 +45,7 @@ public class GreetingControllerTest {
     Greeting greeting = this.greetingController.greeting(this.request, "JavaLandTest");
     assertNotNull(greeting);
     assertEquals("Hello, JavaLandTest!", greeting.getContent());
+    verify(pushBuilder, times(1)).path(anyString());
   }
 
   @Test
@@ -51,6 +54,7 @@ public class GreetingControllerTest {
     Greeting greeting = this.greetingController.greeting(this.request, "JavaLandTest");
     assertNotNull(greeting);
     assertEquals("Hello, JavaLandTest!", greeting.getContent());
+    verify(pushBuilder, times(0)).path(anyString());
   }
 
   @Test
