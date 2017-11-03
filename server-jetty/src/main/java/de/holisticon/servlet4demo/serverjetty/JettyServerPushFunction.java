@@ -1,14 +1,20 @@
 package de.holisticon.servlet4demo.serverjetty;
 
+import javax.servlet.ServletRequest;
+
 import org.eclipse.jetty.server.Request;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.ServletRequest;
 
 @Component
 public class JettyServerPushFunction {
 
-  void jettyServerPush(ServletRequest request) {
+
+  /**
+   * Create a PushBuilder for the given request an perform a push.
+   *
+   * @param request the request from which to get the PushBuilder
+   */
+   public void jettyServerPush(ServletRequest request) {
     org.eclipse.jetty.server.PushBuilder jettyPushBuilder = Request
         .getBaseRequest(request)
         .getPushBuilder();
@@ -16,4 +22,6 @@ public class JettyServerPushFunction {
         .path("/push-greeting?name=push")
         .push();
   }
+
+
 }

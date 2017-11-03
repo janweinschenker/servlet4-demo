@@ -21,23 +21,20 @@ public class GreetingControllerTest {
   private GreetingController greetingController;
   private HttpServletRequest request;
   private PushBuilder pushBuilder;
-  private org.eclipse.jetty.server.PushBuilder jettyPushBuilder;
-  private Request jettyBaseRequest;
-  private JettyServerPushFunction jettyServerPushFunction;
 
   @Before
   public void setUp() {
-    this.jettyServerPushFunction = mock(JettyServerPushFunction.class);
-    this.greetingController = new GreetingController(this.jettyServerPushFunction);
+    JettyServerPushFunction jettyServerPushFunction = mock(JettyServerPushFunction.class);
+    this.greetingController = new GreetingController(jettyServerPushFunction);
     this.request = mock(HttpServletRequest.class);
     this.pushBuilder = mock(PushBuilder.class);
-    this.jettyBaseRequest = mock(Request.class);
-    this.jettyPushBuilder = mock(org.eclipse.jetty.server.PushBuilder.class);
+    Request jettyBaseRequest = mock(Request.class);
+    org.eclipse.jetty.server.PushBuilder jettyPushBuilder = mock(org.eclipse.jetty.server.PushBuilder.class);
 
     PushBuilder pushBuilder = mock(PushBuilder.class);
     when(this.pushBuilder.path(anyString())).thenReturn(this.pushBuilder);
-    when(this.jettyPushBuilder.path(anyString())).thenReturn(this.jettyPushBuilder);
-    when(this.jettyBaseRequest.getPushBuilder()).thenReturn(this.jettyPushBuilder);
+    when(jettyPushBuilder.path(anyString())).thenReturn(jettyPushBuilder);
+    when(jettyBaseRequest.getPushBuilder()).thenReturn(jettyPushBuilder);
   }
 
   @Test

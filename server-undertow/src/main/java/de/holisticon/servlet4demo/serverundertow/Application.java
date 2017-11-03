@@ -12,18 +12,22 @@ import org.springframework.context.annotation.Bean;
 public class Application {
 
   /**
-   * HTTP cleartext port (non https)
+   * HTTP cleartext port (non https) taken from the properties.
    */
   @Value("${server.port.http}")
   public int httpPort;
 
 
+  /**
+   * A main method.
+   * @param args the command line arguments.
+   */
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
   @Bean
-  UndertowServletWebServerFactory embeddedServletContainerFactory() {
+  public UndertowServletWebServerFactory embeddedServletContainerFactory() {
     UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
     factory.addBuilderCustomizers(this::customize);
     return factory;

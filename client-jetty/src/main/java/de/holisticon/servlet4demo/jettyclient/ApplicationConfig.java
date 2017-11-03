@@ -1,47 +1,54 @@
 package de.holisticon.servlet4demo.jettyclient;
 
+import org.apache.log4j.Logger;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.http2.HTTP2Cipher;
 import org.eclipse.jetty.http2.client.HTTP2Client;
 import org.eclipse.jetty.http2.client.http.HttpClientTransportOverHTTP2;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class ApplicationConfig {
 
-  @Autowired
-  private SslContextFactory sslContextFactory;
-
+  private static final Logger LOG = Logger.getLogger(ApplicationConfig.class);
 
   @Bean
-  public HTTP2Client getHttp2Client(){
+  public static HTTP2Client getHttp2Client() {
     return new HTTP2Client();
   }
 
   /**
    * Create a jetty http client capable to speak http/2.
    *
-   * @return
-   * @throws Exception
+   * @return the client
    */
   @Bean
-  public HttpClient getHttpClient() throws Exception {
+  public static HttpClient getHttpClient() {
+
     HTTP2Client http2Client = new HTTP2Client();
     HttpClientTransportOverHTTP2 transport = new HttpClientTransportOverHTTP2(
         http2Client);
 
-    HttpClient httpClient = new HttpClient(transport, sslContextFactory);
+    HttpClient httpClient = new HttpClient(transport, getSslContextFactory());
     httpClient.setFollowRedirects(true);
-    httpClient.start();
+    try {
+      httpClient.start();
+    } catch (Exception e) {
+      LOG.error("Could not start http client", e);
+    }
 
     return httpClient;
   }
 
+  /**
+   * Create a SslContextFactory with a http2-ready cipher comparator.
+   * @return
+   */
   @Bean
-  public SslContextFactory getSslContextFactory() {
+  public static SslContextFactory getSslContextFactory() {
 
     SslContextFactory sslContextFactory = new SslContextFactory();
     sslContextFactory.setCipherComparator(HTTP2Cipher.COMPARATOR);

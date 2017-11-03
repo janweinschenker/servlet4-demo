@@ -1,13 +1,13 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
+import java.util.concurrent.Phaser;
+
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.http2.api.Stream;
 import org.eclipse.jetty.http2.frames.DataFrame;
 import org.eclipse.jetty.http2.frames.HeadersFrame;
 import org.eclipse.jetty.http2.frames.PushPromiseFrame;
 import org.eclipse.jetty.util.Callback;
-
-import java.util.concurrent.Phaser;
 
 public class StreamListener extends Stream.Listener.Adapter implements Stream.Listener {
 
@@ -22,8 +22,9 @@ public class StreamListener extends Stream.Listener.Adapter implements Stream.Li
   @Override
   public void onHeaders(Stream stream, HeadersFrame frame) {
     LOG.info(frame);
-    if (frame.isEndStream())
+    if (frame.isEndStream()) {
       phaser.arrive();
+    }
   }
 
   @Override
@@ -38,8 +39,9 @@ public class StreamListener extends Stream.Listener.Adapter implements Stream.Li
   public void onData(Stream stream, DataFrame frame, Callback callback) {
     LOG.info(frame);
     callback.succeeded();
-    if (frame.isEndStream())
+    if (frame.isEndStream()) {
       phaser.arrive();
+    }
   }
 
 }

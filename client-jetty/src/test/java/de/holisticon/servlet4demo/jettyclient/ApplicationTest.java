@@ -1,7 +1,9 @@
 package de.holisticon.servlet4demo.jettyclient;
 
-import de.holisticon.servlet4demo.jettyclient.jetty.JettyClientDemo;
-import org.eclipse.jetty.util.FuturePromise;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,10 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import de.holisticon.servlet4demo.jettyclient.jetty.JettyClientDemo;
 
 /**
  * Unit test for simple Application.
@@ -37,7 +36,7 @@ public class ApplicationTest {
   @Test
   public void testRun() {
     try {
-      CommandLineRunner run = application.run();
+      application.run();
       verify(jettyClientDemo, times(1)).performAsyncHttpRequest("localhost", 8443, "/greeting?name=JavaLand");
       verify(jettyClientDemo, times(1)).performDefaultHttpRequest("localhost", 8443, "/greeting?name=JavaLand");
     } catch (Exception e) {

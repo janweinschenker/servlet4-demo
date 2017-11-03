@@ -22,7 +22,6 @@ public class Http2ServletTest {
   private HttpServletRequest request;
   private HttpServletResponse response;
 
-  private PrintWriter printWriter;
   private StringWriter stringWriter = new StringWriter();
   private PushBuilder pushBuilder;
 
@@ -33,7 +32,7 @@ public class Http2ServletTest {
     request = mock(HttpServletRequest.class);
     response = mock(HttpServletResponse.class);
     pushBuilder = mock(PushBuilder.class);
-    printWriter = new PrintWriter(stringWriter);
+    PrintWriter printWriter = new PrintWriter(stringWriter);
 
     when(pushBuilder.path(anyString())).thenReturn(pushBuilder);
     when(pushBuilder.addHeader(anyString(), anyString())).thenReturn(pushBuilder);
