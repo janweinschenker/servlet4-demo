@@ -4,6 +4,7 @@ import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
 
 import java.util.concurrent.TimeUnit;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.eclipse.jetty.alpn.server.ALPNServerConnectionFactory;
 import org.eclipse.jetty.http2.HTTP2Cipher;
 import org.eclipse.jetty.http2.server.HTTP2ServerConnectionFactory;
@@ -46,6 +47,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 
   /**
    * Create the JettyServletWebServerFactory bean.
+   *
    * @return JettyServletWebServerFactory
    */
   @Bean
@@ -58,10 +60,12 @@ public class ApplicationConfig implements WebMvcConfigurer {
 
   /**
    * Configure the http2 server.
+   *
    * @param server the server
    * @return the server
    */
-  private Server configureServerForHttp2(Server server) {
+  @VisibleForTesting
+  Server configureServerForHttp2(Server server) {
     // HTTP Configuration
     HttpConfiguration http11Config = new HttpConfiguration();
     http11Config.setSecureScheme("https");
