@@ -33,8 +33,7 @@ public class GreetingControllerTest {
     Request jettyBaseRequest = mock(Request.class);
     org.eclipse.jetty.server.PushBuilder jettyPushBuilder = mock(org.eclipse.jetty.server.PushBuilder.class);
 
-    PushBuilder pushBuilder = mock(PushBuilder.class);
-    when(this.pushBuilder.path(anyString())).thenReturn(this.pushBuilder);
+    when(pushBuilder.path(anyString())).thenReturn(this.pushBuilder);
     when(jettyPushBuilder.path(anyString())).thenReturn(jettyPushBuilder);
     when(jettyBaseRequest.getPushBuilder()).thenReturn(jettyPushBuilder);
   }

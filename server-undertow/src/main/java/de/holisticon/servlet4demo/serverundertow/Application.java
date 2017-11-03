@@ -1,12 +1,14 @@
 package de.holisticon.servlet4demo.serverundertow;
 
-import io.undertow.Undertow;
-import io.undertow.UndertowOptions;
+import org.assertj.core.util.VisibleForTesting;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+
+import io.undertow.Undertow;
+import io.undertow.UndertowOptions;
 
 @SpringBootApplication
 public class Application {
@@ -20,6 +22,7 @@ public class Application {
 
   /**
    * A main method.
+   *
    * @param args the command line arguments.
    */
   public static void main(String[] args) {
@@ -33,6 +36,7 @@ public class Application {
     return factory;
   }
 
+  @VisibleForTesting
   void customize(Undertow.Builder builder) {
     builder
         .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
