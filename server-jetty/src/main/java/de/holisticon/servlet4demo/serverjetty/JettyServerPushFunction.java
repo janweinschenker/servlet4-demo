@@ -2,6 +2,7 @@ package de.holisticon.servlet4demo.serverjetty;
 
 import javax.servlet.ServletRequest;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.eclipse.jetty.server.Request;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,8 @@ public class JettyServerPushFunction {
    *
    * @param request the request from which to get the PushBuilder
    */
-   public void jettyServerPush(ServletRequest request) {
+  @VisibleForTesting
+  void jettyServerPush(ServletRequest request) {
     org.eclipse.jetty.server.PushBuilder jettyPushBuilder = Request
         .getBaseRequest(request)
         .getPushBuilder();

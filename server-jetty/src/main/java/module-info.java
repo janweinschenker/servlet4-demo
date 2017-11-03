@@ -21,6 +21,7 @@ module de.holisticon.servlet4demo.serverjetty {
   requires jackson.annotations;
   requires javax.servlet.api;
   requires log4j.over.slf4j;
+  requires assertj.core;
 
   exports de.holisticon.servlet4demo.serverjetty;
 }

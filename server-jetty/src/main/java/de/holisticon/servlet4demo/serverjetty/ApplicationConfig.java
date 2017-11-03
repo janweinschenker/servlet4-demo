@@ -1,9 +1,19 @@
 package de.holisticon.servlet4demo.serverjetty;
 
+import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
+
+import java.util.concurrent.TimeUnit;
+
 import org.eclipse.jetty.alpn.server.ALPNServerConnectionFactory;
 import org.eclipse.jetty.http2.HTTP2Cipher;
 import org.eclipse.jetty.http2.server.HTTP2ServerConnectionFactory;
-import org.eclipse.jetty.server.*;
+import org.eclipse.jetty.server.HttpConfiguration;
+import org.eclipse.jetty.server.HttpConnectionFactory;
+import org.eclipse.jetty.server.NegotiatingServerConnectionFactory;
+import org.eclipse.jetty.server.SecureRequestCustomizer;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
@@ -16,14 +26,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.eclipse.jetty.util.resource.Resource.newClassPathResource;
-
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = WebConfiguration.class)
-public class WebConfiguration implements WebMvcConfigurer {
+@ComponentScan(basePackageClasses = ApplicationConfig.class)
+public class ApplicationConfig implements WebMvcConfigurer {
 
   @Value("${server.port}")
   private int httpsPort;
@@ -38,6 +44,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     registry.addInterceptor(interceptor);
   }
 
+  /**
+   * Create the JettyServletWebServerFactory bean.
+   * @return JettyServletWebServerFactory
+   */
   @Bean
   public JettyServletWebServerFactory jettyServletWebServerFactory() {
     JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
@@ -46,6 +56,11 @@ public class WebConfiguration implements WebMvcConfigurer {
   }
 
 
+  /**
+   * Configure the http2 server.
+   * @param server the server
+   * @return the server
+   */
   private Server configureServerForHttp2(Server server) {
     // HTTP Configuration
     HttpConfiguration http11Config = new HttpConfiguration();
@@ -73,11 +88,14 @@ public class WebConfiguration implements WebMvcConfigurer {
     alpnServerConnectionFactory.getALPNProcessor();
 
     // SSL Connection Factory
-    SslConnectionFactory sslConnectionFactory = new SslConnectionFactory(sslContextFactory, alpnServerConnectionFactory.getProtocol());
+    SslConnectionFactory sslConnectionFactory =
+        new SslConnectionFactory(sslContextFactory,
+            alpnServerConnectionFactory.getProtocol());
 
     // HTTP/2 Connector
     ServerConnector http2Connector =
-        new ServerConnector(server, sslConnectionFactory, alpnServerConnectionFactory, h2, new HttpConnectionFactory(httpsConfig));
+        new ServerConnector(server, sslConnectionFactory, alpnServerConnectionFactory, h2,
+            new HttpConnectionFactory(httpsConfig));
     http2Connector.setPort(httpPort);
     server.addConnector(http2Connector);
 
