@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/janweinschenker/servlet4-demo.svg?branch=master)](https://travis-ci.org/janweinschenker/servlet4-demo)
 [![Coverage Status](https://coveralls.io/repos/github/janweinschenker/servlet4-demo/badge.svg?branch=master)](https://coveralls.io/github/janweinschenker/servlet4-demo?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/edc5c255d56a4cbda004581f08678057)](https://www.codacy.com/app/janweinschenker/servlet4-demo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=janweinschenker/servlet4-demo&amp;utm_campaign=Badge_Grade)
 
 # Servlet 4 Demo 
 
