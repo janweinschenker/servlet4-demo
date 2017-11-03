@@ -13,6 +13,10 @@ public class Application {
     SpringApplication.run(Application.class, args);
   }
 
+  /**
+   * Create a Tomcat customizer bean to allow Tomcat to speak http2.
+   * @return the TomcatServletWebServerFactory
+   */
   @Bean
   public TomcatServletWebServerFactory tomcatCustomizer() {
     TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();

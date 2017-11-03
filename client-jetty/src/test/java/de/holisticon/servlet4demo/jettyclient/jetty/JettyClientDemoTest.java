@@ -26,22 +26,20 @@ public class JettyClientDemoTest {
   private JettyClientDemo sut;
 
   private HttpClient httpClient;
-  private HTTP2Client http2Client;
   private ContentResponse contentResponse;
   private Request request;
-  private SslContextFactory sslContextFactory;
-  private FuturePromise<Session> sessionPromise;
+  @SuppressWarnings("unchecked")
+  private FuturePromise<Session> sessionPromise = mock(FuturePromise.class);
   private Session session;
   private Phaser phaser;
 
   @Before
   public void setUp() {
     httpClient = mock(HttpClient.class);
-    http2Client = mock(HTTP2Client.class);
+    HTTP2Client http2Client = mock(HTTP2Client.class);
     contentResponse = mock(ContentResponse.class);
     request = mock(Request.class);
-    sslContextFactory = mock(SslContextFactory.class);
-    sessionPromise = (FuturePromise<Session>) mock(FuturePromise.class);
+    SslContextFactory sslContextFactory = mock(SslContextFactory.class);
     session = mock(Session.class);
     phaser = mock(Phaser.class);
 

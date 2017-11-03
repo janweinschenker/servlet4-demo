@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Hello world!
+ * Start the okHttp client demo.
  *
  * @see <a href="https://webtide.com/the-new-jetty-9-http-client/">the-new-jetty-9-http-client</a>
  * @see <a href="http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/tree/jetty-http2/http2-client/src/test/java/org/eclipse/jetty/http2/client/Client.java">Jetty HTTP2Client Example</a>
@@ -33,6 +33,10 @@ public class Application {
     this.okHttpRestTemplate = okHttpRestTemplate;
   }
 
+  /**
+   * Well, this is a classic main method.
+   * @param args and these are the command line arguments.
+   */
   public static void main(String[] args) {
     SpringApplication
         .run(Application.class)
@@ -40,16 +44,20 @@ public class Application {
   }
 
 
+  /**
+   * Start the CommandLineRunner.
+   * @return well, a CommandLineRunner.
+   */
   @Bean
-  public CommandLineRunner run() throws Exception {
+  public CommandLineRunner run() {
     return args -> {
       String host = "localhost";
       String path = "/greeting?name=JavaLand";
-      LOG.info("========================= restTemplate okHttp client => tomcat server ==============");
+      LOG.info("========================= restTemplate okHttp client => tomcat server ===========");
       Greeting greeting = okHttpRestTemplate.getForObject(
           "https://" + host + ":" + httpPort + path, Greeting.class);
       LOG.info(greeting.toString());
-      LOG.info("====================================================================================");
+      LOG.info("=================================================================================");
 
     };
   }

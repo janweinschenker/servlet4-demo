@@ -77,6 +77,7 @@
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
         <mockito-core.version>2.10.0</mockito-core.version>
+        <assertj-core.version>3.8.0</assertj-core.version>
     </properties>
 
     <dependencyManagement>
@@ -180,6 +181,11 @@
                 <version>${jetty.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
@@ -193,7 +199,6 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${javax.servlet-api.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -214,11 +219,6 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-el</artifactId>
-                <version>${tomcat-embed.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-websocket</artifactId>
                 <version>${tomcat-embed.version}</version>
             </dependency>
             <dependency>

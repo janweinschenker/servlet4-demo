@@ -1,10 +1,17 @@
 package de.holisticon.servlet4demo.okhttpclient;
 
-import de.holisticon.servlet4demo.Greeting;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.same;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,12 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.same;
-import static org.mockito.Mockito.*;
+import de.holisticon.servlet4demo.Greeting;
 
 /**
  * Unit test for simple Application.
@@ -61,7 +63,7 @@ public class ApplicationTest {
   public void testRun() {
     try {
       sut.run();
-      verify(okHttpRestTemplate, Mockito.times(1))
+      verify(okHttpRestTemplate, times(1))
           .getForObject(anyString(), same(Greeting.class));
     } catch (Exception e) {
       fail();
