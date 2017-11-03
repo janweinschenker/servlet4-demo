@@ -22,7 +22,6 @@ public class JettyServerPushFunctionTest {
     sut = new JettyServerPushFunction();
     request = mock(Request.class);
     ServletContext ctx = mock(ServletContext.class);
-    HttpChannel httpChannel = mock(HttpChannel.class);
     PushBuilder pushBuilder = mock(PushBuilder.class);
     when(ctx.getRealPath(anyString())).thenReturn("/path/index.html");
     when(request.getPushBuilder()).thenReturn(pushBuilder);

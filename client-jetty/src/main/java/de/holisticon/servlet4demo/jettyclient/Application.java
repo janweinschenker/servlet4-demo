@@ -26,11 +26,8 @@ public class Application {
   @Value("${server.port}")
   private int http2Port;
 
-  @Value("${server.port.http}")
-  private int httpPort;
-
   @Autowired
-  JettyClientDemo jettyClientDemo;
+  private JettyClientDemo jettyClientDemo;
 
   /**
    * This, dear checkstyle, is the main method.

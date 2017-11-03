@@ -21,7 +21,6 @@ public class Http2JsonServletTest {
   private HttpServletRequest request;
   private HttpServletResponse response;
 
-  private PrintWriter printWriter;
   private StringWriter stringWriter = new StringWriter();
 
   @Before
@@ -30,7 +29,7 @@ public class Http2JsonServletTest {
 
     request = mock(HttpServletRequest.class);
     response = mock(HttpServletResponse.class);
-    printWriter = new PrintWriter(stringWriter);
+    PrintWriter printWriter = new PrintWriter(stringWriter);
     try {
       when(response.getWriter()).thenReturn(printWriter);
     } catch (IOException e) {
