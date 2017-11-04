@@ -58,6 +58,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>9</java.version>
+
+        <!-- Dependency versions -->
         <jetty.version>9.4.7.v20170914</jetty.version>
         <spring-boot-starter.version>2.0.0.M5</spring-boot-starter.version>
         <lombok.version>1.16.18</lombok.version>
@@ -68,6 +70,16 @@
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         <httpclient5.version>5.0-alpha2</httpclient5.version>
         <tomcat-embed.version>9.0.1</tomcat-embed.version>
+        <mockito-core.version>2.10.0</mockito-core.version>
+        <assertj-core.version>3.8.0</assertj-core.version>
+
+        <!-- Plugin versions -->
+        <dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
+        <coveralls-maven-plugin.version>3.1.0</coveralls-maven-plugin.version>
+        <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
+        <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 
         <!-- server ports -->
         <server-jetty.https.port>8447</server-jetty.https.port>
@@ -76,8 +88,6 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
-        <mockito-core.version>2.10.0</mockito-core.version>
-        <assertj-core.version>3.8.0</assertj-core.version>
     </properties>
 
     <dependencyManagement>
@@ -256,7 +266,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
                 <configuration>
                     <source>9</source>
                     <target>9</target>
@@ -266,7 +275,6 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.9</version>
                 <executions>
                     <!--
                         Prepares the property pointing to the JaCoCo runtime agent which
@@ -312,7 +320,6 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.1.0</version>
                 <configuration>
                     <relativeReportDirs>
                         <relativeReportDir>/jacoco-it</relativeReportDir>
@@ -331,7 +338,32 @@
                 <plugin>
                     <groupId>com.spotify</groupId>
                     <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>1.3.6</version>
+                    <version>${dockerfile-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>${coveralls-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven-war-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
