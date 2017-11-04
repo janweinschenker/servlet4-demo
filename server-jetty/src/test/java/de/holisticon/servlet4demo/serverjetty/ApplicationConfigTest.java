@@ -30,7 +30,7 @@ public class ApplicationConfigTest {
     when(server.getThreadPool()).thenReturn(new ThreadPool() {
       @Override
       public void join() throws InterruptedException {
-
+        // Do nothing. This is just a unit test.
       }
 
       @Override
@@ -50,7 +50,7 @@ public class ApplicationConfigTest {
 
       @Override
       public void execute(Runnable command) {
-
+        // Do nothing. This is just a unit test.
       }
     });
   }
