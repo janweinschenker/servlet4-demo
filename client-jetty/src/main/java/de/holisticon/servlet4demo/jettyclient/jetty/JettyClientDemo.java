@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
-import org.eclipse.jetty.client.api.Request;
 import org.eclipse.jetty.http.HttpFields;
 import org.eclipse.jetty.http.HttpURI;
 import org.eclipse.jetty.http.HttpVersion;
@@ -59,12 +58,10 @@ public class JettyClientDemo {
   public void performAsyncHttpRequest(String host, int port, String path) {
     LOG.info("============================================= Asynchronous example ===");
     try {
-      String uri = getFormatedUri(host, port, path);
-
-      Request request =
-          httpClient
-              .newRequest(uri)
-              .onResponseContent(new ContentListener());
+      httpClient
+          .newRequest(getFormatedUri(host, port, path))
+          .onResponseContent(new ContentListener())
+          .send(new CompleteListener());
       LOG.info("request created!!!");
       Thread.sleep(5000);
 

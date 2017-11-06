@@ -57,7 +57,7 @@ public class JettyClientDemoTest {
     verify(httpClient, times(1)).newRequest("https://localhost:8443/some/path");
   }
 
-  @Test()
+  @Test
   public void testPerformAsyncHttpRequestWithException() {
 
 
@@ -83,6 +83,16 @@ public class JettyClientDemoTest {
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
       fail();
     }
+  }
+
+  @Test
+  public void testPerformDefaultHttpRequestWithException() {
+    try {
+      when(httpClient.GET(anyString())).thenThrow(Exception.class);
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      fail();
+    }
+    sut.performDefaultHttpRequest("localhost", 8443, "/some/path");
   }
 
   @Test
