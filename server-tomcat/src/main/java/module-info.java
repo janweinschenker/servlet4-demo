@@ -1,6 +1,6 @@
 module de.holisticon.servlet4demo.servertomcat {
 
-  requires de.holisticon.servlet4demo;
+  requires de.holisticon.servlet4demo.util;
 
   requires java.management;
 

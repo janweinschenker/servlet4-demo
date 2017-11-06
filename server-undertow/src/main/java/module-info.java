@@ -1,6 +1,6 @@
 module de.holisticon.servlet4demo.serverundertow {
 
-  requires de.holisticon.servlet4demo;
+  requires de.holisticon.servlet4demo.util;
 
   requires java.management;
   requires javax.servlet.api;
