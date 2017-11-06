@@ -45,9 +45,7 @@ public class Http2JsonServletTest {
       verify(response, times(1)).getWriter();
       assertEquals("{\"id\":39,\"content\":\"Hello, push!\"}", stringWriter.toString());
 
-    } catch (ServletException e) {
-      fail();
-    } catch (IOException e) {
+    } catch (ServletException | IOException e) {
       fail();
     }
   }
