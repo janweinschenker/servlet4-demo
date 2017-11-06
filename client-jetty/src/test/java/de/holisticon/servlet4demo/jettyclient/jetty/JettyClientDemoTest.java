@@ -69,6 +69,7 @@ public class JettyClientDemoTest {
     when(httpClient.newRequest(anyString())).thenReturn(request);
 
     sut.performAsyncHttpRequest("localhost", 8443, "/some/path");
+    verify(request, times(1)).onResponseContent(any(ContentListener.class));
 
   }
 
