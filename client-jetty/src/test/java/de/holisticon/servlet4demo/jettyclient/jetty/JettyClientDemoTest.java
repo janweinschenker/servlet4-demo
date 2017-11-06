@@ -57,6 +57,17 @@ public class JettyClientDemoTest {
     verify(httpClient, times(1)).newRequest("https://localhost:8443/some/path");
   }
 
+  @Test()
+  public void testPerformAsyncHttpRequestWithException() {
+
+
+    when(request.onResponseContent(any(Response.ContentListener.class))).thenThrow(Exception.class);
+    when(httpClient.newRequest(anyString())).thenReturn(request);
+
+    sut.performAsyncHttpRequest("localhost", 8443, "/some/path");
+
+  }
+
   @Test
   public void testPerformDefaultHttpRequest() {
     try {

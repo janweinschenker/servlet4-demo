@@ -1,19 +1,24 @@
 package de.holisticon.servlet4demo.serverglassfish;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.PushBuilder;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class Http2ServletTest {
 
@@ -51,19 +56,18 @@ public class Http2ServletTest {
       verify(response, times(1)).setContentType("text/html;charset=UTF-8");
       verify(response, times(1)).getWriter();
       assertEquals("<html>" +
-                       "<img src='images/cat.jpg'>" +
-                       "<p>Image by <a href=\"https://flic.kr/p/HPf9R1\">" +
-                       "Andy Miccone</a></p>" +
-                       "<p>License: <a href=\"https://creativecommons.org/" +
-                       "publicdomain/zero/1.0/\">" +
-                       "CC0 1.0 Universal (CC0 1.0) \n" +
-                       "Public Domain Dedication</a></p>" +
-                       "</html>", stringWriter.toString());
+          "<img src='images/cat.jpg'>" +
+          "<p>Image by <a href=\"https://flic.kr/p/HPf9R1\">" +
+          "Andy Miccone</a></p>" +
+          "<p>License: <a href=\"https://creativecommons.org/" +
+          "publicdomain/zero/1.0/\">" +
+          "CC0 1.0 Universal (CC0 1.0) \n" +
+          "Public Domain Dedication</a></p>" +
+          "</html>", stringWriter.toString());
       verify(pushBuilder, times(2)).push();
-    } catch (ServletException e) {
+    } catch (ServletException | IOException e) {
       fail();
-    } catch (IOException e) {
-      fail();
+
     }
   }
 }

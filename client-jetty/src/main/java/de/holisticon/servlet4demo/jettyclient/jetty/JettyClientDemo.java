@@ -16,7 +16,6 @@ import org.eclipse.jetty.http2.api.Session;
 import org.eclipse.jetty.http2.api.server.ServerSessionListener;
 import org.eclipse.jetty.http2.client.HTTP2Client;
 import org.eclipse.jetty.http2.frames.HeadersFrame;
-import org.eclipse.jetty.util.BufferUtil;
 import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.Jetty;
 import org.eclipse.jetty.util.Promise;
@@ -42,7 +41,8 @@ public class JettyClientDemo {
    * @param sslContextFactory the ssl context factory
    */
   @Autowired
-  public JettyClientDemo(HttpClient httpClient, HTTP2Client http2Client,
+  public JettyClientDemo(
+      HttpClient httpClient, HTTP2Client http2Client,
       SslContextFactory sslContextFactory) {
     this.httpClient = httpClient;
     this.http2Client = http2Client;
@@ -64,18 +64,7 @@ public class JettyClientDemo {
       Request request =
           httpClient
               .newRequest(uri)
-              .onResponseContent((response, byteBuffer) -> {
-                LOG.info("content: " + BufferUtil.toString(byteBuffer));
-                LOG.info("");
-              });
-      request.send(result -> {
-        LOG.info("http version: " + result
-            .getResponse()
-            .getVersion());
-      });
-
-      // watch the console log: the following message will be printed
-      // before the request has finished.
+              .onResponseContent(new ContentListener());
       LOG.info("request created!!!");
       Thread.sleep(5000);
 
@@ -87,6 +76,7 @@ public class JettyClientDemo {
 
   /**
    * Perform a synchronous http request.
+   *
    * @param host the hostname
    * @param port the port
    * @param path the request path
@@ -109,14 +99,16 @@ public class JettyClientDemo {
 
   /**
    * Perform an http request and wait for a possibly incoming push promise.
-   * @param host the hostname
-   * @param port the port
-   * @param path the request path
+   *
+   * @param host           the hostname
+   * @param port           the port
+   * @param path           the request path
    * @param sessionPromise the session promise object
-   * @param phaser the phaser
+   * @param phaser         the phaser
    * @throws Exception may occur when client is started or stopped
    */
-  public void performHttpRequestReceivePush(String host, int port, String path,
+  public void performHttpRequestReceivePush(
+      String host, int port, String path,
       FuturePromise<Session> sessionPromise, Phaser phaser)
       throws Exception {
 
@@ -124,7 +116,7 @@ public class JettyClientDemo {
     http2Client.start();
 
     http2Client.connect(sslContextFactory, new InetSocketAddress(host, port),
-                        new ServerSessionListener.Adapter(), sessionPromise);
+        new ServerSessionListener.Adapter(), sessionPromise);
     Session session = sessionPromise.get(5, TimeUnit.SECONDS);
 
     HttpFields requestFields = new HttpFields();
@@ -133,7 +125,7 @@ public class JettyClientDemo {
         .getName() + "/" + Jetty.VERSION);
     MetaData.Request metaData =
         new MetaData.Request("GET", new HttpURI("https://" + host + ":" + port + path),
-                             HttpVersion.HTTP_2, requestFields);
+            HttpVersion.HTTP_2, requestFields);
     HeadersFrame headersFrame = new HeadersFrame(metaData, null, true);
     session.newStream(headersFrame, new Promise.Adapter<>(), new StreamListener(phaser));
 
