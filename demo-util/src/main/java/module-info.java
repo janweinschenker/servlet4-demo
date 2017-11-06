@@ -1,4 +1,4 @@
-module de.holisticon.servlet4demo {
+module de.holisticon.servlet4demo.util {
 
   exports de.holisticon.servlet4demo;
 }

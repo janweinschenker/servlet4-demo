@@ -279,7 +279,7 @@
                     <flowInitContext>
                         <masterBranchName>master</masterBranchName>
                         <developBranchName>development</developBranchName>
-                        <featureBranchPrefix>feature/-</featureBranchPrefix>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
                         <releaseBranchPrefix>release-</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
                         <versionTagPrefix>version-</versionTagPrefix>
@@ -288,7 +288,7 @@
                     <password>PASSWORD_FOR_A_GIT_USER</password>
                     <noDeploy>true</noDeploy>
                     <squash>true</squash>
-                    <scmCommentPrefix>[RELEASE] </scmCommentPrefix>
+                    <scmCommentPrefix>[RELEASE]</scmCommentPrefix>
                 </configuration>
             </plugin>
             <plugin>

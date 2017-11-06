@@ -1,6 +1,6 @@
 module de.holisticon.servlet4demo.okhttpclient {
 
-  requires de.holisticon.servlet4demo;
+  requires de.holisticon.servlet4demo.util;
 
   requires spring.core;
   requires spring.expression;

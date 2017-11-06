@@ -1,7 +1,7 @@
 @SuppressWarnings({"deprecation", "removal"})
     module de.holisticon.servlet4demo.jettyclient {
 
-  requires de.holisticon.servlet4demo;
+  requires de.holisticon.servlet4demo.util;
 
   requires spring.core;
   requires spring.beans;
