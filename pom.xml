@@ -4,7 +4,7 @@
 
     <groupId>de.holisticon</groupId>
     <artifactId>servlet4-demo</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <name>servlet4-demo-parent</name>
@@ -94,7 +94,7 @@
             <dependency>
                 <groupId>de.holisticon</groupId>
                 <artifactId>servlet4-demo-util</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
