@@ -83,6 +83,8 @@
                 <version>${codacy-maven-plugin.version}</version>
                 <configuration>
                     <coverageReportFile>target/site/jacoco-aggregate/jacoco.xml</coverageReportFile>
+                    <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
+                    <apiToken>${env.CODACY_API_TOKEN}</apiToken>
                 </configuration>
                 <executions>
                     <execution>
