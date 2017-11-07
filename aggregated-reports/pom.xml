@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.holisticon</groupId>
+        <artifactId>servlet4-demo</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>aggregated-reports</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-client-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-client-okhttp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-server-glassfish</artifactId>
+            <classifier>classes</classifier>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-server-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-server-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-server-undertow</artifactId>
+        </dependency>
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>codacycoverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.gavinmogan</groupId>
+                        <artifactId>codacy-maven-plugin</artifactId>
+                        <version>${codacy-maven-plugin.version}</version>
+                        <configuration>
+                            <coverageReportFile>target/site/jacoco-aggregate/jacoco.xml</coverageReportFile>
+                            <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
+                            <apiToken>${env.CODACY_API_TOKEN}</apiToken>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>coverage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Jacoco prepare-agent builds some command-line params without -->
+                    <!-- which jacoco will not instrument. Hence it is important to add -->
+                    <!-- those command-line params here (${argLine} holds those params) -->
+                    <argLine>${argLine} -Xms256m -Xmx2048m</argLine>
+                    <!--forkCount>1</forkCount-->
+                    <runOrder>random</runOrder>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>report-aggregate</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <configuration>
+                            <dataFileIncludes>
+                                **/*.exec
+                            </dataFileIncludes>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

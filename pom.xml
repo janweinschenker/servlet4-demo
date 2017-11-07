@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.holisticon</groupId>
@@ -24,6 +25,7 @@
         <module>server-undertow</module>
         <module>server-tomcat</module>
         <module>demo-util</module>
+        <module>aggregated-reports</module>
     </modules>
 
     <licenses>
@@ -38,7 +40,7 @@
     <ciManagement>
         <system>Travis</system>
         <url>https://travis-ci.org/janweinschenker/servlet4-demo</url>
-        <notifiers />
+        <notifiers/>
     </ciManagement>
 
     <scm>
@@ -89,8 +91,28 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
+        <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
     </properties>
-
+    <profiles>
+        <profile>
+            <id>coveralls</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eluder.coveralls</groupId>
+                        <artifactId>coveralls-maven-plugin</artifactId>
+                        <configuration>
+                            <relativeReportDirs>
+                                <relativeReportDir>/jacoco-it</relativeReportDir>
+                                <relativeReportDir>/jacoco-ut</relativeReportDir>
+                            </relativeReportDirs>
+                            <repoToken>${COVERALL_TOKEN}</repoToken>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -243,6 +265,41 @@
                 <version>${mockito-core.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-client-jetty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-client-okhttp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-glassfish</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-tomcat</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-jetty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-undertow</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -337,17 +394,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <configuration>
-                    <relativeReportDirs>
-                        <relativeReportDir>/jacoco-it</relativeReportDir>
-                        <relativeReportDir>/jacoco-ut</relativeReportDir>
-                    </relativeReportDirs>
-                    <repoToken>${COVERALL_TOKEN}</repoToken>
-                </configuration>
-            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -384,6 +430,14 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.gavinmogan</groupId>
+                    <artifactId>codacy-maven-plugin</artifactId>
+                    <version>${codacy-maven-plugin.version}</version>
+                    <configuration>
+                        <coverageReportFile>target/site/jacoco-ut/jacoco.xml</coverageReportFile>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
