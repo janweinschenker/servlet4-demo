@@ -85,14 +85,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.gavinmogan</groupId>
-                <artifactId>codacy-maven-plugin</artifactId>
-                <version>${codacy-maven-plugin.version}</version>
-                <configuration>
-                    <coverageReportFile>target/site/jacoco-ut/jacoco.xml</coverageReportFile>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 

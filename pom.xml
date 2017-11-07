@@ -24,6 +24,7 @@
         <module>server-undertow</module>
         <module>server-tomcat</module>
         <module>demo-util</module>
+        <module>aggregated-reports</module>
     </modules>
 
     <licenses>
@@ -244,6 +245,41 @@
                 <version>${mockito-core.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-client-jetty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-client-okhttp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-glassfish</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-tomcat</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-jetty</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.holisticon</groupId>
+                <artifactId>servlet4-demo-server-undertow</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -265,15 +301,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>com.gavinmogan</groupId>
-                <artifactId>codacy-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>none</phase>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

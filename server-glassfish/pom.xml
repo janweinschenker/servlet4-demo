@@ -89,14 +89,7 @@
                 <configuration>
                     <warName>Servlet4Push</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.gavinmogan</groupId>
-                <artifactId>codacy-maven-plugin</artifactId>
-                <version>${codacy-maven-plugin.version}</version>
-                <configuration>
-                    <coverageReportFile>target/site/jacoco-ut/jacoco.xml</coverageReportFile>
+                    <attachClasses>true</attachClasses>
                 </configuration>
             </plugin>
         </plugins>
