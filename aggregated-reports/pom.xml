@@ -43,7 +43,33 @@
             <artifactId>servlet4-demo-server-undertow</artifactId>
         </dependency>
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>codacycoverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.gavinmogan</groupId>
+                        <artifactId>codacy-maven-plugin</artifactId>
+                        <version>${codacy-maven-plugin.version}</version>
+                        <configuration>
+                            <coverageReportFile>target/site/jacoco-aggregate/jacoco.xml</coverageReportFile>
+                            <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
+                            <apiToken>${env.CODACY_API_TOKEN}</apiToken>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>coverage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -75,24 +101,6 @@
                         </configuration>
                     </execution>
 
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.gavinmogan</groupId>
-                <artifactId>codacy-maven-plugin</artifactId>
-                <version>${codacy-maven-plugin.version}</version>
-                <configuration>
-                    <coverageReportFile>target/site/jacoco-aggregate/jacoco.xml</coverageReportFile>
-                    <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
-                    <apiToken>${env.CODACY_API_TOKEN}</apiToken>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>coverage</goal>
-                        </goals>
-                    </execution>
                 </executions>
             </plugin>
         </plugins>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.holisticon</groupId>
@@ -39,7 +40,7 @@
     <ciManagement>
         <system>Travis</system>
         <url>https://travis-ci.org/janweinschenker/servlet4-demo</url>
-        <notifiers />
+        <notifiers/>
     </ciManagement>
 
     <scm>
@@ -92,7 +93,26 @@
         <server-undertow.http.port>8088</server-undertow.http.port>
         <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
     </properties>
-
+    <profiles>
+        <profile>
+            <id>coveralls</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eluder.coveralls</groupId>
+                        <artifactId>coveralls-maven-plugin</artifactId>
+                        <configuration>
+                            <relativeReportDirs>
+                                <relativeReportDir>/jacoco-it</relativeReportDir>
+                                <relativeReportDir>/jacoco-ut</relativeReportDir>
+                            </relativeReportDirs>
+                            <repoToken>${COVERALL_TOKEN}</repoToken>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -373,17 +393,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <configuration>
-                    <relativeReportDirs>
-                        <relativeReportDir>/jacoco-it</relativeReportDir>
-                        <relativeReportDir>/jacoco-ut</relativeReportDir>
-                    </relativeReportDirs>
-                    <repoToken>${COVERALL_TOKEN}</repoToken>
-                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
