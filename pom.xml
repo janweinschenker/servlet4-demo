@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <name>servlet4-demo-parent</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Demo project for Spring Boot, Servlet 4 and http/2</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -44,7 +44,7 @@
     </ciManagement>
 
     <scm>
-        <url>https://github.com/mprins/maven-compass-example</url>
+        <url>https://github.com/janweinschenker/servlet4-demo</url>
         <connection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</connection>
         <developerConnection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</developerConnection>
         <tag>master</tag>
@@ -83,6 +83,8 @@
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
         <!-- server ports -->
         <server-jetty.https.port>8447</server-jetty.https.port>
@@ -91,7 +93,6 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
-        <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
     </properties>
     <profiles>
         <profile>
@@ -112,14 +113,29 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sign</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>de.holisticon</groupId>
-                <artifactId>servlet4-demo-util</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -438,6 +454,11 @@
                     <configuration>
                         <coverageReportFile>target/site/jacoco-ut/jacoco.xml</coverageReportFile>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
