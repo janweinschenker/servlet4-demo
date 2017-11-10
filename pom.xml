@@ -9,12 +9,12 @@
     <packaging>pom</packaging>
 
     <name>servlet4-demo-parent</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Demo project for Spring Boot, Servlet 4 and http/2</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.0.M5</version>
+        <version>2.0.0.M6</version>
     </parent>
 
     <modules>
@@ -44,7 +44,7 @@
     </ciManagement>
 
     <scm>
-        <url>https://github.com/mprins/maven-compass-example</url>
+        <url>https://github.com/janweinschenker/servlet4-demo</url>
         <connection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</connection>
         <developerConnection>scm:git:git@github.com:git://github.com/janweinschenker/servlet4-demo.git</developerConnection>
         <tag>master</tag>
@@ -64,11 +64,11 @@
 
         <!-- Dependency versions -->
         <jetty.version>9.4.7.v20170914</jetty.version>
-        <spring-boot-starter.version>2.0.0.M5</spring-boot-starter.version>
+        <spring-boot-starter.version>2.0.0.M6</spring-boot-starter.version>
         <lombok.version>1.16.18</lombok.version>
         <alpn-api.version>1.1.3.v20160715</alpn-api.version>
         <junit.version>4.12</junit.version>
-        <okhttp.version>3.6.0</okhttp.version>
+        <okhttp.version>3.9.0</okhttp.version>
         <okio.version>1.11.0</okio.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         <httpclient5.version>5.0-alpha2</httpclient5.version>
@@ -83,6 +83,8 @@
         <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
         <!-- server ports -->
         <server-jetty.https.port>8447</server-jetty.https.port>
@@ -91,7 +93,6 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
-        <codacy-maven-plugin.version>1.0.3</codacy-maven-plugin.version>
     </properties>
     <profiles>
         <profile>
@@ -112,14 +113,29 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sign</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>de.holisticon</groupId>
-                <artifactId>servlet4-demo-util</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -438,6 +454,11 @@
                     <configuration>
                         <coverageReportFile>target/site/jacoco-ut/jacoco.xml</coverageReportFile>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
