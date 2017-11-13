@@ -49,3 +49,12 @@ you@there:~/servlet4-demo$ mvn clean install -P no-docker
 
 Please refer to the readme files of the modules.
 
+### Maven profiles
+
+| Profile|Description|
+|---|---|
+| no-docker | Use this profile, if you don't want to create a Docker-image during the maven build. Currently, this only applies for the [server-glassfish](server-glassfish/README.md) module, which requires a docker container to be built.  |
+| codacycoverage |Send test coverage data for this project to codacy. This is only required, if this project is built on Travis CI. In Order to build with this profile. An some API tokens are needed. |
+| coveralls | Send test coverage data for this project to coveralls. This is only required, if this project is built on Travis CI. In Order to build with this profile. An some API tokens are needed. |
+| sign | Sign packages with gpg. Needs appropriate configuration in user's settings.xml.|
+
