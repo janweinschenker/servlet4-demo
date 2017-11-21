@@ -16,7 +16,6 @@ public class Http2Servlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-
     resp.setContentType("text/html;charset=UTF-8");
     PushBuilder pushBuilder = req.newPushBuilder();
     if (pushBuilder != null) {

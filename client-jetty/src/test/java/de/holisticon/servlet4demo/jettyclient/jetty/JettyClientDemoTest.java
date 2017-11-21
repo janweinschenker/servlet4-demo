@@ -65,7 +65,7 @@ public class JettyClientDemoTest {
   public void testPerformAsyncHttpRequestWithException() {
 
 
-    when(request.onResponseContent(any(Response.ContentListener.class))).thenThrow(Exception.class);
+    when(request.onResponseContent(any(Response.ContentListener.class))).thenThrow(RuntimeException.class);
     when(httpClient.newRequest(anyString())).thenReturn(request);
 
     sut.performAsyncHttpRequest("localhost", 8443, "/some/path");
@@ -93,13 +93,13 @@ public class JettyClientDemoTest {
   @Test
   public void testPerformDefaultHttpRequestWithException() {
     try {
-      when(httpClient.GET(anyString())).thenThrow(Exception.class);
+      when(httpClient.GET(anyString())).thenThrow(InterruptedException.class);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
       fail();
     }
     sut.performDefaultHttpRequest("localhost", 8443, "/some/path");
     try {
-    verify(httpClient, times(1)).GET(anyString());
+      verify(httpClient, times(1)).GET(anyString());
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
       fail();
     }
