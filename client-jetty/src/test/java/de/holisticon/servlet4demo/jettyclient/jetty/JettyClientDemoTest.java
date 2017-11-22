@@ -1,6 +1,6 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.anyLong;
@@ -22,8 +22,8 @@ import org.eclipse.jetty.http2.api.Session;
 import org.eclipse.jetty.http2.client.HTTP2Client;
 import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class JettyClientDemoTest {
 
@@ -37,7 +37,7 @@ public class JettyClientDemoTest {
   private Session session;
   private Phaser phaser;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     httpClient = mock(HttpClient.class);
     HTTP2Client http2Client = mock(HTTP2Client.class);
@@ -78,7 +78,7 @@ public class JettyClientDemoTest {
     try {
       when(httpClient.GET(anyString())).thenReturn(contentResponse);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
 
     sut.performDefaultHttpRequest("localhost", 8443, "/some/path");
@@ -86,7 +86,7 @@ public class JettyClientDemoTest {
     try {
       verify(httpClient, times(1)).GET("https://localhost:8443/some/path");
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
   }
 
@@ -95,13 +95,13 @@ public class JettyClientDemoTest {
     try {
       when(httpClient.GET(anyString())).thenThrow(InterruptedException.class);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
     sut.performDefaultHttpRequest("localhost", 8443, "/some/path");
     try {
       verify(httpClient, times(1)).GET(anyString());
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
   }
 
@@ -111,7 +111,7 @@ public class JettyClientDemoTest {
       when(sessionPromise.get(anyLong(), any(TimeUnit.class))).thenReturn(session);
       sut.performHttpRequestReceivePush("localhost", 8443, "/some/path", sessionPromise, phaser);
     } catch (Exception e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
   }
 }

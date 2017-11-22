@@ -1,7 +1,7 @@
 package de.holisticon.servlet4demo.serverglassfish;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.PushBuilder;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class Http2ServletTest {
 
@@ -30,7 +30,7 @@ public class Http2ServletTest {
   private StringWriter stringWriter = new StringWriter();
   private PushBuilder pushBuilder;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new Http2Servlet();
 
@@ -45,7 +45,7 @@ public class Http2ServletTest {
     try {
       when(response.getWriter()).thenReturn(printWriter);
     } catch (IOException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
   }
 
@@ -66,7 +66,7 @@ public class Http2ServletTest {
           "</html>", stringWriter.toString());
       verify(pushBuilder, times(2)).push();
     } catch (ServletException | IOException e) {
-      fail();
+      fail("This test should not raise an Exception.");
 
     }
   }

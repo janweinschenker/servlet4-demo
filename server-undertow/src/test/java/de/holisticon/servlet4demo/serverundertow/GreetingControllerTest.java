@@ -6,13 +6,14 @@ import io.undertow.server.ServerConnection;
 import io.undertow.servlet.spec.HttpServletRequestImpl;
 import io.undertow.util.HeaderMap;
 import io.undertow.util.HttpString;
-import org.junit.Before;
-import org.junit.Test;
 
 import javax.servlet.http.PushBuilder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GreetingControllerTest {
 
@@ -22,7 +23,7 @@ public class GreetingControllerTest {
   private ServerConnection connection;
   private PushBuilder pushBuilder;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new GreetingController();
     connection = mock(ServerConnection.class);

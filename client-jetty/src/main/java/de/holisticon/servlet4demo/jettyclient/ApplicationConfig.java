@@ -45,7 +45,7 @@ public class ApplicationConfig {
 
   /**
    * Create a SslContextFactory with a http2-ready cipher comparator.
-   * @return
+   * @return an instance of a configured SslContextFactory
    */
   @Bean
   public static SslContextFactory getSslContextFactory() {

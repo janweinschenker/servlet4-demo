@@ -8,7 +8,7 @@ import static org.mockito.Mockito.verify;
 import java.nio.ByteBuffer;
 
 import org.eclipse.jetty.client.api.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ContentListenerTest {
 

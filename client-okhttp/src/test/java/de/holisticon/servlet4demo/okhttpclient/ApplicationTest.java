@@ -1,7 +1,7 @@
 package de.holisticon.servlet4demo.okhttpclient;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.mock;
@@ -9,15 +9,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
 import de.holisticon.servlet4demo.Greeting;
@@ -25,8 +25,9 @@ import de.holisticon.servlet4demo.Greeting;
 /**
  * Unit test for simple Application.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@ExtendWith(SpringExtension.class)
+
 public class ApplicationTest {
 
   private Application sut;
@@ -54,7 +55,7 @@ public class ApplicationTest {
   }
 
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new Application(okHttpRestTemplate);
   }
@@ -66,7 +67,7 @@ public class ApplicationTest {
       verify(okHttpRestTemplate, times(1))
           .getForObject(anyString(), same(Greeting.class));
     } catch (Exception e) {
-      fail();
+      fail("This test should not raise an exception.");
     }
   }
 

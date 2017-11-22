@@ -5,12 +5,12 @@ import org.eclipse.jetty.http2.frames.DataFrame;
 import org.eclipse.jetty.http2.frames.HeadersFrame;
 import org.eclipse.jetty.http2.frames.PushPromiseFrame;
 import org.eclipse.jetty.util.Callback;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Phaser;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class StreamListenerAdapterTest {
@@ -24,7 +24,7 @@ public class StreamListenerAdapterTest {
   private PushPromiseFrame pushPromiseFrame;
   private Callback callback;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     phaser = mock(Phaser.class);
     headersFrame = mock(HeadersFrame.class);

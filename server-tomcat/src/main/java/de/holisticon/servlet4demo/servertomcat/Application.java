@@ -15,14 +15,14 @@ public class Application {
 
   /**
    * Create a Tomcat customizer bean to allow Tomcat to speak http2.
+   *
    * @return the TomcatServletWebServerFactory
    */
   @Bean
   public TomcatServletWebServerFactory tomcatCustomizer() {
     TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-    factory.addConnectorCustomizers((connector -> {
-      connector.addUpgradeProtocol(new Http2Protocol());
-    }));
+    factory.addConnectorCustomizers((connector ->
+        connector.addUpgradeProtocol(new Http2Protocol())));
     return factory;
   }
 }

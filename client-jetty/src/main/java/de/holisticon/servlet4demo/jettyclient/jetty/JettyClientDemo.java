@@ -138,7 +138,7 @@ public class JettyClientDemo {
    * @param host the hostname
    * @param port the port
    * @param path the request path
-   * @return
+   * @return a formatted URI String
    */
   private static String getFormatedUri(String host, int port, String path) {
     return String.format("https://%s:%s%s", host, port, path);
