@@ -86,10 +86,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
     // HTTP/2 Connection Factory
     HTTP2ServerConnectionFactory h2 = new HTTP2ServerConnectionFactory(httpsConfig);
 
-    NegotiatingServerConnectionFactory.checkProtocolNegotiationAvailable();
     ALPNServerConnectionFactory alpnServerConnectionFactory = new ALPNServerConnectionFactory();
     alpnServerConnectionFactory.setDefaultProtocol("h2");
-    alpnServerConnectionFactory.getALPNProcessor();
 
     // SSL Connection Factory
     SslConnectionFactory sslConnectionFactory =
