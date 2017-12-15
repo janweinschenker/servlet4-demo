@@ -107,12 +107,28 @@ public class JettyClientDemo {
    */
   public void performHttpRequestReceivePush(
       String host, int port, String path,
-      FuturePromise<Session> sessionPromise, Phaser phaser)
+      FuturePromise<Session> sessionPromise, Phaser phaser, ClientInitializer initializer)
       throws Exception {
 
-    http2Client.addBean(sslContextFactory);
-    http2Client.start();
+    initializer.init();
+    performHttpRequestReceivePush(host, port, path, sessionPromise, phaser);
+    http2Client.stop();
+  }
 
+  /**
+   * Perform an http request and wait for a possibly incoming push promise.
+   *
+   * @param host           the hostname
+   * @param port           the port
+   * @param path           the request path
+   * @param sessionPromise the session promise object
+   * @param phaser         the phaser
+   * @throws Exception may occur when client is started or stopped
+   */
+  public void performHttpRequestReceivePush(
+      String host, int port, String path,
+      FuturePromise<Session> sessionPromise, Phaser phaser)
+      throws Exception {
     http2Client.connect(sslContextFactory, new InetSocketAddress(host, port),
         new ServerSessionListener.Adapter(), sessionPromise);
     Session session = sessionPromise.get(5, TimeUnit.SECONDS);
@@ -128,8 +144,16 @@ public class JettyClientDemo {
     session.newStream(headersFrame, new Promise.Adapter<>(), new StreamListener(phaser));
 
     phaser.awaitAdvanceInterruptibly(phaser.arrive(), 5, TimeUnit.SECONDS);
+  }
 
-    http2Client.stop();
+  public void initHttp2Client() {
+    http2Client.addBean(sslContextFactory);
+    try {
+      http2Client.start();
+    } catch (Exception e) {
+      LOG.error("Exception while initializing http2 client.", e);
+    }
+
   }
 
 

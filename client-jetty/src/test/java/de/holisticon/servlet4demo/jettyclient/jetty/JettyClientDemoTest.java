@@ -1,5 +1,6 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -23,8 +24,8 @@ import org.eclipse.jetty.http2.client.HTTP2Client;
 import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Null;
 
 public class JettyClientDemoTest {
 
@@ -37,11 +38,12 @@ public class JettyClientDemoTest {
   private FuturePromise<Session> sessionPromise = mock(FuturePromise.class);
   private Session session;
   private Phaser phaser;
+  private HTTP2Client http2Client;
 
   @BeforeEach
   public void setUp() {
     httpClient = mock(HttpClient.class);
-    HTTP2Client http2Client = mock(HTTP2Client.class);
+    http2Client = mock(HTTP2Client.class);
     contentResponse = mock(ContentResponse.class);
     request = mock(Request.class);
     SslContextFactory sslContextFactory = mock(SslContextFactory.class);
@@ -106,12 +108,21 @@ public class JettyClientDemoTest {
     }
   }
 
-  @Disabled
   @Test
   public void testPerformHttpRequestReceivePush() {
     try {
       when(sessionPromise.get(anyLong(), any(TimeUnit.class))).thenReturn(session);
       sut.performHttpRequestReceivePush("localhost", 8443, "/some/path", sessionPromise, phaser);
+    } catch (Exception e) {
+      fail("This test should not raise an Exception.");
+    }
+  }
+
+  @Test
+  public void testInitHttp2Client() {
+    sut.initHttp2Client();
+    try {
+      assertThrows(NullPointerException.class, () -> http2Client.start());
     } catch (Exception e) {
       fail("This test should not raise an Exception.");
     }
