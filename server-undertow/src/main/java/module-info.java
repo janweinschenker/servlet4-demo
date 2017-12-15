@@ -12,9 +12,9 @@ module de.holisticon.servlet4demo.serverundertow {
   requires spring.boot.autoconfigure;
 
   requires assertj.core;
-  requires log4j.over.slf4j;
   requires undertow.core;
   requires undertow.servlet;
+  requires slf4j.api;
 
   exports de.holisticon.servlet4demo.serverundertow;
 }

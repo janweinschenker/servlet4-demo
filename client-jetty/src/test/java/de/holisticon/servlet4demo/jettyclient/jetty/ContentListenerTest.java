@@ -8,10 +8,12 @@ import static org.mockito.Mockito.verify;
 import java.nio.ByteBuffer;
 
 import org.eclipse.jetty.client.api.Response;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class ContentListenerTest {
 
+  @Disabled
   @Test
   public void testOnContent() {
     ContentListener sut = new ContentListener();

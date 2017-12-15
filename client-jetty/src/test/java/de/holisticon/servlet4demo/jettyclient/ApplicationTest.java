@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,7 @@ public class ApplicationTest {
     application = new Application();
   }
 
+  @DisplayName("Test method application.run()")
   @Test
   public void testRun() {
     try {

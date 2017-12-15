@@ -12,7 +12,6 @@
   requires spring.boot;
   requires spring.boot.autoconfigure;
 
-  requires log4j.over.slf4j;
   requires http2.client;
   requires http2.http.client.transport;
   requires http2.common;
@@ -20,6 +19,7 @@
   requires jetty.http;
   requires jetty.util;
   requires jackson.annotations;
+  requires slf4j.api;
 
   exports de.holisticon.servlet4demo.jettyclient;
 }

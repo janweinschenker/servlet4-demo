@@ -12,7 +12,7 @@ module de.holisticon.servlet4demo.okhttpclient {
 
   requires okhttp;
   requires jackson.annotations;
-  requires log4j.over.slf4j;
+  requires slf4j.api;
 
 
   exports de.holisticon.servlet4demo.okhttpclient;

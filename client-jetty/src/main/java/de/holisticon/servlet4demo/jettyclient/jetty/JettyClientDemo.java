@@ -4,7 +4,6 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.http.HttpFields;
@@ -19,12 +18,14 @@ import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.Jetty;
 import org.eclipse.jetty.util.Promise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JettyClientDemo {
-  private static final Logger LOG = Logger.getLogger(JettyClientDemo.class);
+  private static final Logger LOG = LoggerFactory.getLogger(JettyClientDemo.class);
 
   private HttpClient httpClient;
 

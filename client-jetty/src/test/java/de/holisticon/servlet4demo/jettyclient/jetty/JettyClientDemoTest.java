@@ -23,6 +23,7 @@ import org.eclipse.jetty.http2.client.HTTP2Client;
 import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class JettyClientDemoTest {
@@ -105,6 +106,7 @@ public class JettyClientDemoTest {
     }
   }
 
+  @Disabled
   @Test
   public void testPerformHttpRequestReceivePush() {
     try {

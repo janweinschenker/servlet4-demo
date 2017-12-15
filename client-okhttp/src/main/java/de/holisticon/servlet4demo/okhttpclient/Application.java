@@ -1,7 +1,7 @@
 package de.holisticon.servlet4demo.okhttpclient;
 
-import de.holisticon.servlet4demo.Greeting;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+
+import de.holisticon.servlet4demo.Greeting;
 
 /**
  * Start the okHttp client demo.
@@ -21,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class Application {
 
-  private static final Logger LOG = Logger.getLogger(Application.class);
+  private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
   private RestTemplate okHttpRestTemplate;
 
@@ -35,6 +37,7 @@ public class Application {
 
   /**
    * Well, this is a classic main method.
+   *
    * @param args and these are the command line arguments.
    */
   public static void main(String[] args) {
@@ -46,6 +49,7 @@ public class Application {
 
   /**
    * Start the CommandLineRunner.
+   *
    * @return well, a CommandLineRunner.
    */
   @Bean

@@ -6,6 +6,7 @@ import org.eclipse.jetty.http2.frames.HeadersFrame;
 import org.eclipse.jetty.http2.frames.PushPromiseFrame;
 import org.eclipse.jetty.util.Callback;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Phaser;
@@ -51,6 +52,7 @@ public class StreamListenerAdapterTest {
     verify(phaser, times(0)).arrive();
   }
 
+  @Disabled
   @Test
   public void testOnPush() {
     Stream.Listener listener = sut.onPush(stream, pushPromiseFrame);

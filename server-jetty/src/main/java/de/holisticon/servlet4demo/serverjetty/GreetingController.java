@@ -6,7 +6,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.PushBuilder;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ import de.holisticon.servlet4demo.Greeting;
 @RestController
 public class GreetingController {
 
-  private static final Logger LOG = Logger.getLogger(GreetingController.class);
+  private static final Logger LOG = LoggerFactory.getLogger(GreetingController.class);
 
   private static final String template = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();
@@ -32,12 +33,14 @@ public class GreetingController {
 
   /**
    * Method to receive a GET request for a Greeting.
+   *
    * @param request the HTTP request.
-   * @param name the string containing the name
+   * @param name    the string containing the name
    * @return a Greeting
    */
   @RequestMapping("/greeting")
-  public Greeting greeting(ServletRequest request,
+  public Greeting greeting(
+      ServletRequest request,
       @RequestParam(value = "name", defaultValue = "World") String name) {
 
     HttpServletRequest httpServletRequest = (HttpServletRequest) request;
@@ -62,6 +65,7 @@ public class GreetingController {
   /**
    * The target endpoint of the push promise that is
    * issued in {@link #greeting(ServletRequest, String)}.
+   *
    * @param name the name
    * @return another Greeting
    */

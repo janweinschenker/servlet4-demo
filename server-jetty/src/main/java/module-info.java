@@ -20,8 +20,8 @@ module de.holisticon.servlet4demo.serverjetty {
   requires http2.server;
   requires jackson.annotations;
   requires javax.servlet.api;
-  requires log4j.over.slf4j;
   requires assertj.core;
+  requires slf4j.api;
 
   exports de.holisticon.servlet4demo.serverjetty;
 }
