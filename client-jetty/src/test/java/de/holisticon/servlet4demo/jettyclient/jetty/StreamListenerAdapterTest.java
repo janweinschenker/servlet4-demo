@@ -1,18 +1,22 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.concurrent.Phaser;
+
+import org.eclipse.jetty.http.HttpVersion;
+import org.eclipse.jetty.http.MetaData;
 import org.eclipse.jetty.http2.api.Stream;
 import org.eclipse.jetty.http2.frames.DataFrame;
 import org.eclipse.jetty.http2.frames.HeadersFrame;
 import org.eclipse.jetty.http2.frames.PushPromiseFrame;
 import org.eclipse.jetty.util.Callback;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.Phaser;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
 public class StreamListenerAdapterTest {
 
@@ -37,6 +41,7 @@ public class StreamListenerAdapterTest {
 
     when(headersFrame.isEndStream()).thenReturn(Boolean.TRUE);
     when(dataFrame.isEndStream()).thenReturn(Boolean.TRUE);
+    when(pushPromiseFrame.getMetaData()).thenReturn(new MetaData(HttpVersion.HTTP_2, null));
   }
 
   @Test
@@ -52,7 +57,6 @@ public class StreamListenerAdapterTest {
     verify(phaser, times(0)).arrive();
   }
 
-  @Disabled
   @Test
   public void testOnPush() {
     Stream.Listener listener = sut.onPush(stream, pushPromiseFrame);
