@@ -14,6 +14,6 @@ public class ContentListener implements Response.ContentListener {
   @Override
   public void onContent(Response response, ByteBuffer byteBuffer) {
     LOG.info("content: " + BufferUtil.toString(byteBuffer));
-    LOG.info("");
+    LOG.info("response: " + response.getHeaders());
   }
 }

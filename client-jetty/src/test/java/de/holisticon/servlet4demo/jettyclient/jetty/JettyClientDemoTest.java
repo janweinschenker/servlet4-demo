@@ -25,7 +25,6 @@ import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Null;
 
 public class JettyClientDemoTest {
 
@@ -127,4 +126,6 @@ public class JettyClientDemoTest {
       fail("This test should not raise an Exception.");
     }
   }
+
+
 }
