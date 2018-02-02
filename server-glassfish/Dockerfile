@@ -1,4 +1,4 @@
-FROM oracle/glassfish:nightly-web
+FROM oracle/glassfish:5.0-web
 MAINTAINER Jan Weinschenker <jan.weinschenker@holisticon.de>
 COPY ./target/Servlet4Push.war /glassfish5/glassfish/domains/domain1/autodeploy
 EXPOSE 8080:8080

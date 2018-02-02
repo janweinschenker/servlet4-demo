@@ -20,7 +20,7 @@ public class Http2Servlet extends HttpServlet {
     PushBuilder pushBuilder = req.newPushBuilder();
     if (pushBuilder != null) {
       pushBuilder
-          .path("images/cat.png")
+          .path("images/cat.jpg")
           .addHeader("content-type", "image/jpeg")
           .push();
       pushBuilder

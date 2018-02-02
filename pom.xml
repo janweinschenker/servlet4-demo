@@ -26,6 +26,7 @@
         <module>server-tomcat</module>
         <module>demo-util</module>
         <module>aggregated-reports</module>
+        <module>client-hc</module>
     </modules>
 
     <licenses>
@@ -72,7 +73,7 @@
         <okhttp.version>3.9.1</okhttp.version>
         <okio.version>1.13.0</okio.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
-        <httpclient5.version>5.0-alpha2</httpclient5.version>
+        <httpclient5.version>5.0-beta1</httpclient5.version>
         <tomcat-embed.version>9.0.2</tomcat-embed.version>
         <mockito-core.version>2.13.0</mockito-core.version>
         <assertj-core.version>3.8.0</assertj-core.version>
@@ -94,6 +95,7 @@
         <server-tomcat.http.port>8089</server-tomcat.http.port>
         <server-undertow.https.port>8448</server-undertow.https.port>
         <server-undertow.http.port>8088</server-undertow.http.port>
+        <httpcore5-h2.version>5.0-beta2</httpcore5-h2.version>
     </properties>
     <profiles>
         <profile>
@@ -278,6 +280,11 @@
                 <groupId>org.apache.httpcomponents.client5</groupId>
                 <artifactId>httpclient5</artifactId>
                 <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-h2</artifactId>
+                <version>${httpcore5-h2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
