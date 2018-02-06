@@ -39,7 +39,7 @@ public class Application {
 
     return args -> {
       String[] requestUris = {"/greeting?name=JavaLand", "/greeting?name=OOP"};
-      hcClientDemo.run(this.http2Port, requestUris);
+      hcClientDemo.run("localhost", this.http2Port, requestUris);
     };
   }
 }
