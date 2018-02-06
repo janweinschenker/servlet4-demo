@@ -1,6 +1,5 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -117,15 +116,7 @@ public class JettyClientDemoTest {
     }
   }
 
-  @Test
-  public void testInitHttp2Client() {
-    sut.initHttp2Client();
-    try {
-      assertThrows(NullPointerException.class, () -> http2Client.start());
-    } catch (Exception e) {
-      fail("This test should not raise an Exception.");
-    }
-  }
+
 
 
 }
