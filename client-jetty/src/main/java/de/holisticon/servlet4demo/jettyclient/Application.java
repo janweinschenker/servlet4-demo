@@ -53,7 +53,7 @@ public class Application {
       jettyClientDemo.performAsyncHttpRequest(host, http2Port, path);
       jettyClientDemo.performDefaultHttpRequest(host, http2Port, path);
       jettyClientDemo.performHttpRequestReceivePush(host, http2Port, path,
-          new FuturePromise<>(), new Phaser(2));
+          new FuturePromise<>(), new Phaser(2), () -> jettyClientDemo.initHttp2Client());
     };
   }
 

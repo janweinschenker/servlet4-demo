@@ -1,7 +1,8 @@
 package de.holisticon.servlet4demo.serverglassfish;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.PushBuilder;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class Http2ServletTest {
 
@@ -30,7 +31,7 @@ public class Http2ServletTest {
   private StringWriter stringWriter = new StringWriter();
   private PushBuilder pushBuilder;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new Http2Servlet();
 
@@ -41,16 +42,17 @@ public class Http2ServletTest {
 
     when(pushBuilder.path(anyString())).thenReturn(pushBuilder);
     when(pushBuilder.addHeader(anyString(), anyString())).thenReturn(pushBuilder);
-    when(request.newPushBuilder()).thenReturn(pushBuilder);
+
     try {
       when(response.getWriter()).thenReturn(printWriter);
     } catch (IOException e) {
-      fail();
+      fail("This test should not raise an Exception.");
     }
   }
 
   @Test
   public void testDoGet() {
+    when(request.newPushBuilder()).thenReturn(pushBuilder);
     try {
       sut.doGet(request, response);
       verify(response, times(1)).setContentType("text/html;charset=UTF-8");
@@ -66,8 +68,51 @@ public class Http2ServletTest {
           "</html>", stringWriter.toString());
       verify(pushBuilder, times(2)).push();
     } catch (ServletException | IOException e) {
-      fail();
+      fail("This test should not raise an Exception.");
 
     }
+  }
+
+  @Test
+  public void testDoGetNoPushBuilder() {
+    when(request.newPushBuilder()).thenReturn(null);
+    try {
+      sut.doGet(request, response);
+      verify(response, times(1)).setContentType("text/html;charset=UTF-8");
+      verify(response, times(1)).getWriter();
+      assertEquals("<html>" +
+          "<img src='images/cat.jpg'>" +
+          "<p>Image by <a href=\"https://flic.kr/p/HPf9R1\">" +
+          "Andy Miccone</a></p>" +
+          "<p>License: <a href=\"https://creativecommons.org/" +
+          "publicdomain/zero/1.0/\">" +
+          "CC0 1.0 Universal (CC0 1.0) \n" +
+          "Public Domain Dedication</a></p>" +
+          "</html>", stringWriter.toString());
+    } catch (ServletException | IOException e) {
+      fail("This test should not raise an Exception.");
+
+    }
+  }
+
+  @Test
+  public void testDoGetIOException() {
+    when(request.newPushBuilder()).thenReturn(null);
+
+    try {
+      when(response.getWriter()).thenThrow(IOException.class);
+    } catch (IOException e) {
+      fail("This test should not raise an Exception.");
+    }
+
+    assertThrows(IOException.class, () -> sut.doGet(request, response));
+    verify(response, times(1)).setContentType("text/html;charset=UTF-8");
+
+    try {
+      verify(response, times(1)).getWriter();
+    } catch (IOException e) {
+      fail("This test should not raise an Exception.");
+    }
+
   }
 }

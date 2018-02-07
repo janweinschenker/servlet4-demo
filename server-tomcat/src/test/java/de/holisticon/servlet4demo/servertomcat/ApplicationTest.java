@@ -1,7 +1,7 @@
 package de.holisticon.servlet4demo.servertomcat;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -12,8 +12,8 @@ import java.util.List;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http2.Http2Protocol;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 
@@ -26,7 +26,7 @@ public class ApplicationTest {
 
   private Connector connector;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new Application();
     connector = mock(Connector.class);

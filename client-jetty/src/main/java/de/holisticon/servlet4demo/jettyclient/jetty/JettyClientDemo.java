@@ -4,7 +4,6 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.http.HttpFields;
@@ -19,12 +18,14 @@ import org.eclipse.jetty.util.FuturePromise;
 import org.eclipse.jetty.util.Jetty;
 import org.eclipse.jetty.util.Promise;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JettyClientDemo {
-  private static final Logger LOG = Logger.getLogger(JettyClientDemo.class);
+  private static final Logger LOG = LoggerFactory.getLogger(JettyClientDemo.class);
 
   private HttpClient httpClient;
 
@@ -106,12 +107,28 @@ public class JettyClientDemo {
    */
   public void performHttpRequestReceivePush(
       String host, int port, String path,
-      FuturePromise<Session> sessionPromise, Phaser phaser)
+      FuturePromise<Session> sessionPromise, Phaser phaser, ClientInitializer initializer)
       throws Exception {
 
-    http2Client.addBean(sslContextFactory);
-    http2Client.start();
+    initializer.init();
+    performHttpRequestReceivePush(host, port, path, sessionPromise, phaser);
+    http2Client.stop();
+  }
 
+  /**
+   * Perform an http request and wait for a possibly incoming push promise.
+   *
+   * @param host           the hostname
+   * @param port           the port
+   * @param path           the request path
+   * @param sessionPromise the session promise object
+   * @param phaser         the phaser
+   * @throws Exception may occur when client is started or stopped
+   */
+  public void performHttpRequestReceivePush(
+      String host, int port, String path,
+      FuturePromise<Session> sessionPromise, Phaser phaser)
+      throws Exception {
     http2Client.connect(sslContextFactory, new InetSocketAddress(host, port),
         new ServerSessionListener.Adapter(), sessionPromise);
     Session session = sessionPromise.get(5, TimeUnit.SECONDS);
@@ -127,8 +144,16 @@ public class JettyClientDemo {
     session.newStream(headersFrame, new Promise.Adapter<>(), new StreamListener(phaser));
 
     phaser.awaitAdvanceInterruptibly(phaser.arrive(), 5, TimeUnit.SECONDS);
+  }
 
-    http2Client.stop();
+  public void initHttp2Client() {
+    http2Client.addBean(sslContextFactory);
+    try {
+      http2Client.start();
+    } catch (Exception e) {
+      LOG.error("Exception while initializing http2 client.", e);
+    }
+
   }
 
 
@@ -138,7 +163,7 @@ public class JettyClientDemo {
    * @param host the hostname
    * @param port the port
    * @param path the request path
-   * @return
+   * @return a formatted URI String
    */
   private static String getFormatedUri(String host, int port, String path) {
     return String.format("https://%s:%s%s", host, port, path);

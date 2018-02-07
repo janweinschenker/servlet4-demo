@@ -1,15 +1,19 @@
 package de.holisticon.servlet4demo.servertomcat;
 
-import de.holisticon.servlet4demo.Greeting;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.PushBuilder;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import de.holisticon.servlet4demo.Greeting;
 
 public class GreetingControllerTest {
 
@@ -18,7 +22,7 @@ public class GreetingControllerTest {
   private HttpServletRequest request;
   private PushBuilder pushBuilder;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new GreetingController();
     request = mock(HttpServletRequest.class);

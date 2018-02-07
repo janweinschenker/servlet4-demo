@@ -1,3 +1,4 @@
+setenv.sh
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -71,3 +72,5 @@ modules.xml
 /.idea/
 .DS_Store
 target/
+my-tomcat/
+logs/

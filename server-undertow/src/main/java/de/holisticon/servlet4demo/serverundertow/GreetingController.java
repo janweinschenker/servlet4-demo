@@ -5,7 +5,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.PushBuilder;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import io.undertow.util.Methods;
 @RestController
 public class GreetingController {
 
-  private static final Logger LOG = Logger.getLogger(GreetingController.class);
+  private static final Logger LOG = LoggerFactory.getLogger(GreetingController.class);
 
   private static final String template = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker rmi weinschenker/glassfish-servlet4:0.0.1-SNAPSHOT
+docker rmi weinschenker/glassfish-servlet4:1.0.4-SNAPSHOT

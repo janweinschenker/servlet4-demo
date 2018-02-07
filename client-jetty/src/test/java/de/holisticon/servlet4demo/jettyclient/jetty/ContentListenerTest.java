@@ -1,14 +1,13 @@
 package de.holisticon.servlet4demo.jettyclient.jetty;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.nio.ByteBuffer;
 
 import org.eclipse.jetty.client.api.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ContentListenerTest {
 
@@ -17,11 +16,9 @@ public class ContentListenerTest {
     ContentListener sut = new ContentListener();
 
     Response response = mock(Response.class);
-    ByteBuffer buffer = ByteBuffer.allocate(10);
-    ByteBuffer spy = spy(buffer);
 
-    sut.onContent(response, spy);
+    sut.onContent(response, ByteBuffer.allocate(10));
 
-    verify(spy, times(1)).hasArray();
+    verify(response, times(1)).getHeaders();
   }
 }

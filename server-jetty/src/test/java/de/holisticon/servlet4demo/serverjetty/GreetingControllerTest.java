@@ -1,22 +1,21 @@
 package de.holisticon.servlet4demo.serverjetty;
 
-import de.holisticon.servlet4demo.Greeting;
-import de.holisticon.servlet4demo.serverjetty.GreetingController;
-import de.holisticon.servlet4demo.serverjetty.JettyServerPushFunction;
-import org.eclipse.jetty.server.Request;
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.PushBuilder;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.PushBuilder;
+
+import org.eclipse.jetty.server.Request;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import de.holisticon.servlet4demo.Greeting;
 
 public class GreetingControllerTest {
 
@@ -24,7 +23,7 @@ public class GreetingControllerTest {
   private HttpServletRequest request;
   private PushBuilder pushBuilder;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     JettyServerPushFunction jettyServerPushFunction = mock(JettyServerPushFunction.class);
     this.greetingController = new GreetingController(jettyServerPushFunction);

@@ -9,7 +9,8 @@ public class Greeting {
 
   /**
    * Create a Greeting with a numerical ID and a short text.
-   * @param id the greeting's id
+   *
+   * @param id      the greeting's id
    * @param content the gretting's tex
    */
   public Greeting(long id, String content) {

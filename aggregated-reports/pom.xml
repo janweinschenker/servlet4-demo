@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.holisticon</groupId>
         <artifactId>servlet4-demo</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>aggregated-reports</artifactId>
@@ -14,6 +14,10 @@
         <dependency>
             <groupId>de.holisticon</groupId>
             <artifactId>servlet4-demo-client-jetty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-client-hc</artifactId>
         </dependency>
         <dependency>
             <groupId>de.holisticon</groupId>

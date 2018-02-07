@@ -19,8 +19,9 @@ public class GreetingController {
 
   /**
    * Method to receive a GET request for a Greeting.
+   *
    * @param request the HTTP request.
-   * @param name the string containing the name
+   * @param name    the string containing the name
    * @return a Greeting
    */
   @RequestMapping("/greeting")

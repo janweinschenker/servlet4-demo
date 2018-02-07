@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import org.eclipse.jetty.client.api.Response;
 import org.eclipse.jetty.client.api.Result;
 import org.eclipse.jetty.http.HttpVersion;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CompleteListenerTest {
 

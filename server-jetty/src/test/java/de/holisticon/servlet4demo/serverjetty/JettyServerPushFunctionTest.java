@@ -11,8 +11,8 @@ import javax.servlet.ServletContext;
 
 import org.eclipse.jetty.server.PushBuilder;
 import org.eclipse.jetty.server.Request;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class JettyServerPushFunctionTest {
 
@@ -20,7 +20,7 @@ public class JettyServerPushFunctionTest {
 
   private Request request;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sut = new JettyServerPushFunction();
     request = mock(Request.class);

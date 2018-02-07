@@ -1,6 +1,8 @@
 package de.holisticon.servlet4demo.jettyclient;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.http2.HTTP2Cipher;
 import org.eclipse.jetty.http2.client.HTTP2Client;
@@ -13,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class ApplicationConfig {
 
-  private static final Logger LOG = Logger.getLogger(ApplicationConfig.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ApplicationConfig.class);
 
   @Bean
   public static HTTP2Client getHttp2Client() {
@@ -45,7 +47,7 @@ public class ApplicationConfig {
 
   /**
    * Create a SslContextFactory with a http2-ready cipher comparator.
-   * @return
+   * @return an instance of a configured SslContextFactory
    */
   @Bean
   public static SslContextFactory getSslContextFactory() {
