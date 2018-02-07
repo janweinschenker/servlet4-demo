@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>servlet4-demo-server-jetty</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>servlet4-demo-server-jetty</name>
@@ -12,7 +12,7 @@
     <parent>
         <groupId>de.holisticon</groupId>
         <artifactId>servlet4-demo</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5-SNAPSHOT</version>
     </parent>
 
     <properties>
