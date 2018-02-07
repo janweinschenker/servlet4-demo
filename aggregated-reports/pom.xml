@@ -17,6 +17,10 @@
         </dependency>
         <dependency>
             <groupId>de.holisticon</groupId>
+            <artifactId>servlet4-demo-client-hc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.holisticon</groupId>
             <artifactId>servlet4-demo-client-okhttp</artifactId>
         </dependency>
         <dependency>

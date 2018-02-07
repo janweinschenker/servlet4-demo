@@ -7,6 +7,8 @@ module de.holisticon.servlet4demo.hc {
   requires httpcore5;
   requires httpcore5.h2;
   requires slf4j.api;
+  requires java.xml.ws.annotation;
+  requires assertj.core;
 
 
   exports de.holisticon.servlet4demo.hc;

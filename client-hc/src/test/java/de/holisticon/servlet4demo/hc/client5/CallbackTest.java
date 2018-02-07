@@ -28,12 +28,21 @@ public class CallbackTest {
   public void testCompleted() {
     SimpleHttpResponse response = mock(SimpleHttpResponse.class);
     SimpleBody body = mock(SimpleBody.class);
-
     when(response.getBody()).thenReturn(body);
-
     sut.completed(response);
-
     verify(latch, times(1)).countDown();
+  }
 
+  @Test
+  public void testFailed() {
+    Exception ex = mock(Exception.class);
+    sut.failed(ex);
+    verify(latch, times(1)).countDown();
+  }
+
+  @Test
+  public void testCancelled() {
+    sut.cancelled();
+    verify(latch, times(1)).countDown();
   }
 }
