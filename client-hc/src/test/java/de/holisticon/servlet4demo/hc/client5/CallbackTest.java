@@ -16,7 +16,7 @@ public class CallbackTest {
 
   private Callback sut;
 
-  CountDownLatch latch;
+  private CountDownLatch latch;
 
   @BeforeEach
   public void setUp() {

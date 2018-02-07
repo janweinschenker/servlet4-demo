@@ -23,7 +23,6 @@ public class HcClientDemoTest {
 
   private HcClientDemo sut;
 
-
   @BeforeEach
   public void setUp() {
     sut = new HcClientDemo();
@@ -58,7 +57,6 @@ public class HcClientDemoTest {
     String[] requestUris = {"/greeting?name=JavaLand", "/greeting?name=OOP"};
     MinimalHttpAsyncClient client = mock(MinimalHttpAsyncClient.class);
     Future<AsyncClientEndpoint> future = mock(Future.class);
-    AsyncClientEndpoint endpoint = mock(AsyncClientEndpoint.class);
     try {
       when(future.get(anyLong(), any(TimeUnit.class))).thenThrow(InterruptedException.class);
     } catch (InterruptedException e) {

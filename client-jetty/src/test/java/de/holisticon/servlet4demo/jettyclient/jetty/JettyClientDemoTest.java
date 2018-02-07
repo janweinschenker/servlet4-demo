@@ -36,12 +36,11 @@ public class JettyClientDemoTest {
   private FuturePromise<Session> sessionPromise = mock(FuturePromise.class);
   private Session session;
   private Phaser phaser;
-  private HTTP2Client http2Client;
 
   @BeforeEach
   public void setUp() {
+    HTTP2Client http2Client = mock(HTTP2Client.class);
     httpClient = mock(HttpClient.class);
-    http2Client = mock(HTTP2Client.class);
     contentResponse = mock(ContentResponse.class);
     request = mock(Request.class);
     SslContextFactory sslContextFactory = mock(SslContextFactory.class);
@@ -115,8 +114,6 @@ public class JettyClientDemoTest {
       fail("This test should not raise an Exception.");
     }
   }
-
-
 
 
 }
