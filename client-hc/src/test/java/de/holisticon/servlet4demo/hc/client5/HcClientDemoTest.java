@@ -54,9 +54,31 @@ public class HcClientDemoTest {
   }
 
   @Test
-  public void testInit() {
-    sut.initIt();
+  public void testRunTimeout() {
+    String[] requestUris = {"/greeting?name=JavaLand", "/greeting?name=OOP"};
+    MinimalHttpAsyncClient client = mock(MinimalHttpAsyncClient.class);
+    Future<AsyncClientEndpoint> future = mock(Future.class);
+    AsyncClientEndpoint endpoint = mock(AsyncClientEndpoint.class);
+    try {
+      when(future.get(anyLong(), any(TimeUnit.class))).thenThrow(InterruptedException.class);
+    } catch (InterruptedException e) {
+      fail("This test is not expected to fail.");
+    } catch (ExecutionException e) {
+      fail("This test is not expected to fail.");
+    } catch (TimeoutException e) {
+      fail("This test is not expected to fail.");
+    }
+    when(client.lease(any(HttpHost.class), any())).thenReturn(future);
+    try {
+      sut.setClient(client);
+      sut.run("localhost", 443, requestUris);
+    } catch (Exception e) {
+      fail("This test is not expected to fail.");
+    }
+  }
 
+  @Test
+  public void testInit() {
     MinimalHttpAsyncClient client = sut.getClient();
     assertNotNull(client);
     assertTrue(client instanceof MinimalHttpAsyncClient);

@@ -1,5 +1,6 @@
 package de.holisticon.servlet4demo.hc;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -41,5 +42,10 @@ public class Application {
       String[] requestUris = {"/greeting?name=JavaLand", "/greeting?name=OOP"};
       hcClientDemo.run("localhost", this.http2Port, requestUris);
     };
+  }
+
+  @VisibleForTesting
+  void setHcClientDemo(HcClientDemo hcClientDemo) {
+    this.hcClientDemo = hcClientDemo;
   }
 }
