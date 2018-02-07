@@ -72,3 +72,5 @@ modules.xml
 /.idea/
 .DS_Store
 target/
+my-tomcat/
+logs/
