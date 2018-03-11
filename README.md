@@ -14,7 +14,7 @@ The demo is a  Maven mulit-module project that consists of these modules:
 | [client-jetty](client-jetty/README.md) | An http2 client implemented with Jetty's http client.|
 | [client-okhttp](client-okhttp/README.md) | An http2 client implemented with spring boot 2 and OkHttp's http client. |
 | client-httpcomponents| An http2 client implemented with Apache HTTP components. This one will be made available as soon as [version 5.0](https://hc.apache.org/httpcomponents-client-5.0.x/index.html) of this library has been released.|
-| [server-glassfish](server-glassfish/README.md)| An http2 servlet that runs on a Glassfish 5 application server. Will use local port 8181 for http2.|
+| [server-glassfish](server-glassfish/README.md)| An http2 servlet that runs on a Glassfish 5 application server. Will use local port 8182 for http2.|
 | [server-jetty](server-jetty/README.md) | An http2 rest controller that is implemented with spring boot 2 and Jetty's embedded http server. Will use local port 8447 for http2 and 8087 for http 1.1.|
 | [server-tomcat](server-tomcat/README.md) | An http2 rest controller that is implemented with spring boot 2 and Tomcat's embedded http server. Will use local port 8449 for http2.|
 | [server-undertow](server-undertow/README.md) | An http2 rest controller that is implemented with spring boot 2 and Undertows's embedded http server. Will use local port 8448 for http2.|

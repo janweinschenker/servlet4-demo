@@ -1,0 +1,1 @@
+docker run --name primefaces-servlet4 -it --rm -d -p 8181:8181 weinschenker/primefaces-servlet4:0.0.1-SNAPSHOT
